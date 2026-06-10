@@ -1,0 +1,45 @@
+{
+  "name": "unique-visions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "set NODE_OPTIONS=--max-old-space-size=4096 && next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clean": "rmdir /s /q .next 2>nul || exit 0"
+  },
+  "dependencies": {
+    "@auth/mongodb-adapter": "^3.11.2",
+    "@emailjs/browser": "^4.4.1",
+    "bcryptjs": "^3.0.3",
+    "clsx": "^2.1.1",
+    "firebase": "^12.13.0",
+    "framer-motion": "^11.3.8",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.414.0",
+    "mongodb": "^7.2.0",
+    "mongoose": "^9.6.3",
+    "next": "^16.2.6",
+    "next-auth": "^4.24.14",
+    "nodemailer": "^7.0.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.4.0",
+    "twilio": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.14.11",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "typescript": "^5.5.3"
+  }
+}

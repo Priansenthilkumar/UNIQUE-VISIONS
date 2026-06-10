@@ -1,0 +1,21 @@
+import mongoose, { Schema, Document } from 'mongoose'
+
+export interface IUser extends Document {
+  name: string
+  email: string
+  phone?: string
+  googleId?: string
+  image?: string
+  createdAt: Date
+}
+
+const UserSchema = new Schema<IUser>({
+  name:       { type: String, required: true, trim: true },
+  email:      { type: String, required: true, unique: true, lowercase: true, trim: true },
+  phone:      { type: String, trim: true },
+  googleId:   { type: String, unique: true, sparse: true },
+  image:      { type: String },
+  createdAt:  { type: Date, default: Date.now },
+})
+
+export default mongoose.models.User || mongoose.model<IUser>('User', UserSchema)
