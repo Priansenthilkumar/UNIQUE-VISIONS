@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Instagram, Facebook, MessageCircle, Mail, Phone, MapPin, ArrowUp } from 'lucide-react'
 import Logo from './Logo'
@@ -19,6 +20,13 @@ const serviceLinks = [
 
 export default function Footer() {
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   const handleLink = (href: string) => {
     if (href.startsWith('#')) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })

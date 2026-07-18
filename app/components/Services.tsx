@@ -61,12 +61,14 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const inView = useInView(ref, { once: true, margin: '-50px' })
   
   const cardVariants = {
-    hidden: { opacity: 0, y: 40, rotateX: -20 },
+    hidden: { opacity: 0, y: 48, rotateX: -16, skewY: 4, scale: 0.96 },
     visible: { 
       opacity: 1, 
       y: 0,
       rotateX: 0,
-      transition: { duration: 0.6, delay: (index % 4) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
+      skewY: 0,
+      scale: 1,
+      transition: { duration: 0.65, delay: (index % 4) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
     }
   }
   
@@ -76,8 +78,8 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      whileHover={{ y: -12, rotateY: 2 }}
-      className="card-premium p-8 h-full flex flex-col relative group overflow-hidden"
+      whileHover={{ y: -14, rotateY: 6, scale: 1.02 }}
+      className="card-premium glass-liquid p-8 h-full flex flex-col relative group overflow-hidden"
       style={{ perspective: 1000 }}
     >
       {/* Animated background gradient */}
@@ -119,7 +121,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
       {/* Content */}
       <motion.h3 
-        className="font-playfair font-bold text-xl text-text mb-3 group-hover:text-primary transition-colors duration-300"
+        className="font-cormorant font-semibold text-xl text-text mb-3 group-hover:text-primary transition-colors duration-300"
         whileHover={{ x: 4 }}
       >
         {service.title}
@@ -204,7 +206,7 @@ export default function Services() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="section-label inline-block"
+            className="label-josefin inline-block text-primary"
           >
             What We Offer
           </motion.span>
@@ -214,7 +216,7 @@ export default function Services() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-cinzel font-bold text-5xl md:text-6xl text-text mt-4 mb-6"
+            className="font-cormorant font-bold text-5xl md:text-6xl text-text mt-4 mb-6"
           >
             Our <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Services</span>
           </motion.h2>

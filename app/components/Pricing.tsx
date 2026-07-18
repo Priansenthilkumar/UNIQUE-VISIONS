@@ -17,12 +17,13 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: 0, y: 60, scale: 0.94, skewY: 3 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.6, delay: (index % 3) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
+      skewY: 0,
+      transition: { duration: 0.65, delay: (index % 3) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
     }
   }
 
@@ -32,7 +33,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      whileHover={{ y: -16, scale: 1.04 }}
+      whileHover={{ y: -20, scale: 1.05, rotateZ: -0.5 }}
       className={`relative rounded-3xl p-10 flex flex-col backdrop-blur-xl transition-all duration-300 overflow-hidden group ${
         plan.popular 
           ? 'card-premium-alt ring-2 ring-primary/40' 

@@ -76,8 +76,8 @@ export default function Navbar() {
               <Logo size={48} />
             </motion.div>
             <div className="hidden sm:flex flex-col leading-tight">
-              <span className="font-playfair text-sm font-bold tracking-wider text-primary group-hover:text-primary-dark transition-colors duration-300">UNIQUE</span>
-              <span className="font-playfair text-sm font-bold tracking-wider bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent group-hover:from-primary to-primary-dark transition-all duration-300">VISIONS</span>
+              <span className="font-josefin text-xs tracking-widest text-primary group-hover:text-primary-dark transition-colors duration-300">UNIQUE</span>
+              <span className="font-josefin text-xs tracking-widest bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent">VISIONS</span>
             </div>
           </motion.a>
 
@@ -97,7 +97,7 @@ export default function Navbar() {
                 animate="animate"
                 whileHover="hover"
                 onClick={() => handleNav(link.href)}
-                className="font-montserrat text-xs font-bold text-text-muted tracking-widest uppercase transition-colors relative group"
+                className="font-josefin text-[0.65rem] font-bold text-text-muted tracking-widest uppercase transition-colors relative group"
               >
                 <span className="relative z-10">{link.label}</span>
                 
@@ -131,7 +131,7 @@ export default function Navbar() {
               onClick={() => router.push('/order')} 
               whileHover={{ scale: 1.08, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-primary to-primary-dark text-white px-7 py-3 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+              className="btn-primary px-7 py-3 rounded-full font-josefin text-xs tracking-widest shadow-lg relative overflow-hidden group"
             >
               <span className="relative z-10">Get Started</span>
               <motion.div 
@@ -181,7 +181,7 @@ export default function Navbar() {
                 transition={{ delay: 0.1 }}
                 className="flex items-center justify-between p-6 border-b border-primary/15 bg-gradient-to-r from-white/50 to-white/30"
               >
-                <span className="font-cinzel text-lg font-bold bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text text-transparent">UNIQUE VISIONS</span>
+                <span className="font-josefin text-sm tracking-widest glossy-text">UNIQUE VISIONS</span>
                 <motion.button 
                   onClick={() => setMenuOpen(false)} 
                   className="text-text-muted hover:text-primary transition-colors p-1.5 hover:bg-primary/10 rounded-lg"

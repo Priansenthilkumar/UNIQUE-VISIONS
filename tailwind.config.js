@@ -27,6 +27,8 @@ module.exports = {
         playfair: ['var(--font-playfair)', 'serif'],
         space: ['var(--font-space)', 'sans-serif'],
         dm: ['var(--font-dm)', 'sans-serif'],
+        cormorant: ['var(--font-cormorant)', 'serif'],
+        josefin: ['var(--font-josefin)', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

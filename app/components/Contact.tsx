@@ -121,8 +121,8 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
+            initial={{ opacity: 0, x: -80, scale: 0.98 }} 
+            whileInView={{ opacity: 1, x: 0, scale: 1 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }} 
             className="space-y-8">
@@ -208,8 +208,8 @@ export default function Contact() {
 
           {/* Right Side - Contact Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
+            initial={{ opacity: 0, x: 80, scale: 0.98 }} 
+            whileInView={{ opacity: 1, x: 0, scale: 1 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
           >
