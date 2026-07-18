@@ -16,75 +16,131 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, delay: (index % 3) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
+    }
+  }
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: (index % 3) * 0.12 }}
-      whileHover={{ y: -12, scale: 1.03 }}
-      className={`relative rounded-2xl p-8 flex flex-col backdrop-blur-xl transition-all duration-300 ${plan.popular ? 'ring-2 ring-[#0F6A3D] shadow-2xl' : 'shadow-xl hover:shadow-2xl'}`}
-      style={{
-        background: plan.popular 
-          ? 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(109,40,217,0.08) 100%)'
-          : 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(109,40,217,0.04) 100%)',
-        border: plan.popular ? '1px solid rgba(15,106,61,0.4)' : '1px solid rgba(15,106,61,0.15)',
-        boxShadow: plan.popular 
-          ? '0 20px 40px rgba(15,106,61,0.2), inset 0 1px 1px rgba(255,255,255,0.1)'
-          : '0 8px 32px rgba(15,106,61,0.1), inset 0 1px 1px rgba(255,255,255,0.05)'
-      }}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      whileHover={{ y: -16, scale: 1.04 }}
+      className={`relative rounded-3xl p-10 flex flex-col backdrop-blur-xl transition-all duration-300 overflow-hidden group ${
+        plan.popular 
+          ? 'card-premium-alt ring-2 ring-primary/40' 
+          : 'card-premium-alt'
+      }`}
     >
+      {/* Animated background gradient */}
+      <motion.div 
+        className={`absolute inset-0 ${
+          plan.popular 
+            ? 'bg-gradient-to-br from-primary/15 to-secondary/10' 
+            : 'bg-gradient-to-br from-primary/8 to-secondary/5'
+        } opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+        style={{ pointerEvents: 'none' }}
+      />
+
+      {/* Popular Badge */}
       {plan.popular && (
-        <>
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-            <motion.div 
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="flex items-center gap-2 bg-gradient-to-r from-[#0F6A3D] to-[#2E8B57] text-white backdrop-blur-sm border border-[#0F6A3D]/30 px-4 py-2 rounded-full shadow-lg">
-              <Zap size={12} fill="currentColor" />
-              <span className="font-syne text-xs font-bold tracking-wide">MOST POPULAR</span>
+        <motion.div 
+          initial={{ opacity: 0, y: -20, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="absolute -top-5 left-1/2 -translate-x-1/2 z-20"
+        >
+          <motion.div 
+            animate={{ y: [0, -8, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="flex items-center gap-2 bg-gradient-to-r from-primary-accent via-primary to-primary-dark text-white backdrop-blur-md border border-primary-light/40 px-5 py-2.5 rounded-full shadow-lg"
+          >
+            <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity }}>
+              <Zap size={14} fill="currentColor" />
             </motion.div>
-          </div>
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0F6A3D]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </>
+            <span className="font-space text-xs font-bold tracking-widest">MOST POPULAR</span>
+          </motion.div>
+        </motion.div>
       )}
 
-      <div className="mb-7">
-        <h3 className={`font-syne font-bold text-lg mb-2 ${plan.popular ? 'text-[#1F2A1F]' : 'text-[#1F2A1F]'}`}>{plan.name}</h3>
-        <p className={`font-poppins text-sm ${plan.popular ? 'text-[#1F2A1F]/80' : 'text-[#1F2A1F]/70'}`}>{plan.desc}</p>
+      {/* Shine effect on hover */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+        initial={{ opacity: 0, x: '-100%' }}
+        whileHover={{ opacity: 1, x: '100%' }}
+        transition={{ duration: 0.5 }}
+        style={{ pointerEvents: 'none' }}
+      />
+
+      <div className={`mb-8 relative z-10 ${plan.popular ? 'pt-6' : ''}`}>
+        <motion.h3 
+          className="font-playfair font-bold text-2xl mb-3 text-text group-hover:text-primary transition-colors duration-300"
+          whileHover={{ x: 4 }}
+        >
+          {plan.name}
+        </motion.h3>
+        <p className="font-poppins text-sm text-text-muted">{plan.desc}</p>
       </div>
 
-      <div className="mb-8 flex items-end gap-2">
-        <span className={`font-cinzel text-5xl leading-none font-bold ${plan.popular ? 'text-[#0F6A3D]' : 'gradient-text'}`}>{plan.price}</span>
-        <span className={`font-poppins text-sm mb-2 ${plan.popular ? 'text-[#1F2A1F]/70' : 'text-[#1F2A1F]/60'}`}>{plan.period}</span>
-      </div>
+      {/* Price */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.3 }}
+        className="mb-10 flex items-end gap-2 relative z-10"
+      >
+        <span className={`font-playfair text-6xl leading-none font-bold ${
+          plan.popular 
+            ? 'bg-gradient-to-r from-primary-accent to-primary bg-clip-text text-transparent' 
+            : 'text-text'
+        }`}>
+          {plan.price}
+        </span>
+        <span className="font-poppins text-sm text-text-muted mb-2">{plan.period}</span>
+      </motion.div>
 
-      <ul className="space-y-3.5 mb-10 flex-1">
-        {plan.features.map(f => (
+      {/* Features List */}
+      <ul className="space-y-4 mb-12 flex-1 relative z-10">
+        {plan.features.map((f, i) => (
           <motion.li 
-            key={f} 
-            whileHover={{ x: 4 }}
-            className="flex items-center gap-3 group/item">
-            <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
-              plan.popular 
-                ? 'bg-gradient-to-br from-[#0F6A3D] to-[#2E8B57]' 
-                : 'bg-gradient-to-br from-[#0F6A3D] to-[#0A4D2C]'
-            } group-hover/item:scale-110`}>
-              <Check size={12} className="text-white" />
-            </div>
-            <span className={`font-poppins text-sm transition-colors ${plan.popular ? 'text-[#1F2A1F]/80' : 'text-[#1F2A1F]/70'} group-hover/item:text-[#1F2A1F]`}>{f}</span>
+            key={f}
+            initial={{ opacity: 0, x: -15 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.4 + i * 0.06 }}
+            whileHover={{ x: 6 }}
+            className="flex items-center gap-3 group/item"
+          >
+            <motion.div 
+              whileHover={{ scale: 1.3, rotate: 360 }}
+              transition={{ duration: 0.4 }}
+              className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                plan.popular 
+                  ? 'bg-gradient-to-br from-primary-accent to-primary' 
+                  : 'bg-gradient-to-br from-primary to-primary-dark'
+              }`}
+            >
+              <Check size={14} className="text-white" />
+            </motion.div>
+            <span className="font-poppins text-sm text-text-muted group-hover/item:text-text transition-colors">{f}</span>
           </motion.li>
         ))}
       </ul>
 
+      {/* CTA Button */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.06, y: -3 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => window.location.href = `/order?plan=${encodeURIComponent(plan.name)}`}
-        className={`w-full py-3.5 rounded-xl font-syne font-bold text-sm transition-all duration-300 relative overflow-hidden group ${
+        className={`relative z-10 w-full py-4 rounded-2xl font-cinzel font-bold text-sm transition-all duration-300 overflow-hidden group/btn shadow-lg ${
           plan.popular
-            ? 'bg-gradient-to-r from-[#0F6A3D] to-[#2E8B57] text-white hover:shadow-lg hover:shadow-[#0F6A3D]/40'
-            : 'btn-primary text-white'
+            ? 'btn-primary text-white'
+            : 'bg-white/70 border border-primary/30 text-primary hover:bg-white/90 hover:border-primary/50'
         }`}
       >
         <span className="relative z-10">Order Now</span>
@@ -95,25 +151,105 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section-padding relative overflow-hidden section-bg">
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] hero-shape rounded-full opacity-[0.04] blur-[120px]" />
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center mb-16">
-          <span className="section-label">Transparent Pricing</span>
-          <h2 className="font-oswald text-[clamp(2.2rem,5vw,4.5rem)] font-bold mt-3 gradient-text-dark uppercase tracking-wide">Our Pricing</h2>
-          <p className="font-dm text-[#1F2A1F]/70 max-w-xl mx-auto mt-4 text-sm">Premium quality at affordable prices. No hidden charges.</p>
-          <div className="red-divider mx-auto mt-4" />
+    <section id="pricing" className="section-padding relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div 
+        animate={{ 
+          x: [0, 80, 0], 
+          y: [0, -50, 0],
+          scale: [1, 1.15, 1]
+        }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-l from-primary-light/12 to-secondary/8 blur-3xl opacity-25 pointer-events-none"
+      />
+      
+      <motion.div 
+        animate={{ 
+          x: [0, -60, 0], 
+          y: [0, 80, 0],
+          scale: [1.1, 1, 1.1]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-secondary/8 to-primary-light/12 blur-3xl opacity-25 pointer-events-none"
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
+          className="text-center mb-20"
+        >
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="section-label inline-block"
+          >
+            Transparent Pricing
+          </motion.span>
+
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-cinzel text-6xl md:text-7xl font-bold mt-4 mb-6 text-text"
+          >
+            <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Our Pricing</span>
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="font-poppins text-text-muted text-lg max-w-2xl mx-auto"
+          >
+            Premium quality at affordable prices. No hidden charges, transparent billing.
+          </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="divider-line mx-auto mt-8"
+          />
         </motion.div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-          {plans.map((plan, i) => <PricingCard key={plan.name} plan={plan} index={i} />)}
+
+        {/* Pricing Cards Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-16">
+          {plans.map((plan, i) => (
+            <PricingCard key={plan.name} plan={plan} index={i} />
+          ))}
         </div>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="text-center mt-12">
-          <p className="font-dm text-[#1F2A1F]/60 text-sm">
-            Need a custom package?{' '}
-            <button onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })} className="text-[#0F6A3D] hover:text-[#0A4D2C] font-bold transition-colors duration-300">
-              Contact us for a tailored quote →
-            </button>
+
+        {/* Custom Package CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center bg-gradient-to-r from-white/40 to-white/20 backdrop-blur-xl border border-primary/15 rounded-3xl p-8 md:p-12"
+        >
+          <h3 className="font-cinzel text-3xl md:text-4xl font-bold text-text mb-4">
+            Need Something Custom?
+          </h3>
+          <p className="font-poppins text-text-muted text-lg mb-6 max-w-2xl mx-auto">
+            Let's create a tailored solution that fits your specific business needs and budget.
           </p>
+          <motion.button 
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-primary px-8 py-4 rounded-full font-semibold text-base shadow-lg"
+          >
+            Get a Custom Quote
+          </motion.button>
         </motion.div>
       </div>
     </section>

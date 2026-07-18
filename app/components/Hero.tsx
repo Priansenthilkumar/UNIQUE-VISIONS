@@ -1,203 +1,193 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ArrowRight, Users, Briefcase, Star, Clock, Sparkles } from 'lucide-react'
+import { ArrowRight, Users, Briefcase, Star, TrendingUp } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 const ParticleBackground = dynamic(() => import('./ParticleBackground'), { ssr: false })
 
 const stats = [
   { icon: Users, value: '10+', label: 'Happy Clients' },
-  { icon: Briefcase, value: '50+', label: 'Projects Done' },
-  { icon: Star, value: '100%', label: 'Satisfaction' },
-  { icon: Clock, value: '2026', label: 'Est. Year' },
+  { icon: Briefcase, value: '50+', label: 'Projects Completed' },
+  { icon: Star, value: '100%', label: 'Client Satisfaction' },
+  { icon: TrendingUp, value: '2026', label: 'Founded' },
 ]
-
-const slideVariants = {
-  hidden: { x: -100, opacity: 0 },
-  visible: (i: number) => ({
-    x: 0,
-    opacity: 1,
-    transition: {
-      delay: i * 0.25,
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  })
-}
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    }
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
   }
 }
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { opacity: 0, y: 20 },
   visible: { 
-    y: 0, 
-    opacity: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }
   }
 }
 
 export default function Hero() {
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg pt-24 md:pt-0">
       <ParticleBackground />
-      <div className="absolute inset-0 grid-overlay opacity-20" />
+      
+      {/* Animated gradient orbs */}
+      <motion.div 
+        animate={{ 
+          x: [0, 100, 0], 
+          y: [0, 50, 0],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-10 left-10 w-96 h-96 rounded-full bg-gradient-to-r from-primary-light/20 to-secondary/15 blur-3xl opacity-30 pointer-events-none"
+      />
+      
+      <motion.div 
+        animate={{ 
+          x: [0, -80, 0], 
+          y: [0, -60, 0],
+          scale: [1.2, 1, 1.2]
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-gradient-to-l from-secondary/15 to-primary-light/10 blur-3xl opacity-25 pointer-events-none"
+      />
 
-      {/* Premium Glow Effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full pointer-events-none"
-        style={{ 
-          background: 'radial-gradient(ellipse, rgba(216,226,200,0.25) 0%, transparent 70%)', 
-          filter: 'blur(80px)',
-          animation: 'float 8s ease-in-out infinite'
-        }} />
-      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none animate-float"
-        style={{ background: 'radial-gradient(circle, rgba(46,139,87,0.08) 0%, transparent 70%)', filter: 'blur(60px)' }} />
-      <div className="absolute top-1/2 right-0 w-80 h-80 rounded-full pointer-events-none"
-        style={{ 
-          background: 'radial-gradient(circle, rgba(216,226,200,0.15) 0%, transparent 70%)', 
-          filter: 'blur(70px)',
-          animation: 'float-slow 6s ease-in-out infinite'
-        }} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(122,157,127,0.05),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(107,144,118,0.04),transparent_50%)]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
-
-        {/* Animated Label */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
+        
+        {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
           animate={{ opacity: 1, scale: 1 }} 
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-4 mb-12">
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white/80 backdrop-blur-xl border border-primary/15 mb-8 shadow-md hover:shadow-lg transition-all duration-300 hover:bg-white/90"
+        >
           <motion.div 
-            className="h-px w-8" 
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{ background: 'linear-gradient(90deg, transparent, rgba(15,106,61,0.7))', transformOrigin: 'right' }} />
-          <span className="section-label">Premium Digital Marketing Agency</span>
-          <motion.div 
-            className="h-px w-8" 
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{ background: 'linear-gradient(90deg, rgba(15,106,61,0.7), transparent)', transformOrigin: 'left' }} />
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-primary-light to-primary shadow-glow-sm"
+          />
+          <span className="text-primary-dark text-[0.7rem] font-semibold tracking-wider uppercase">Premium Digital Marketing Agency</span>
         </motion.div>
 
-        {/* Main Heading with Premium Animation */}
-        <motion.h1 
-          className="font-cinzel uppercase mb-10 leading-[0.95] tracking-tight font-black text-3d"
-          style={{ fontSize: 'clamp(3rem, 12vw, 10rem)' }}>
-          <motion.span 
-            custom={0}
-            variants={slideVariants}
-            initial="hidden"
-            animate="visible"
-            className="block text-[#1F2A1F]">Creative</motion.span>
-          <motion.span 
-            custom={1}
-            variants={slideVariants}
-            initial="hidden"
-            animate="visible"
-            className="block gradient-text text-3d">Digital</motion.span>
-          <motion.span 
-            custom={2}
-            variants={slideVariants}
-            initial="hidden"
-            animate="visible"
-            className="block text-[#1F2A1F]">Solutions</motion.span>
-        </motion.h1>
-
-        {/* Subheading with Fade Animation */}
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-poppins text-[#1F2A1F]/80 max-w-2xl mx-auto mb-14 leading-relaxed"
-          style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)' }}>
-          We create content and strategies that help your brand grow online. Premium digital marketing with proven results.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
+        {/* Main Heading */}
+        <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
-          <motion.button
+          className="mb-8"
+        >
+          <motion.h1 
             variants={itemVariants}
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-10 py-4 rounded-full btn-primary font-syne font-bold text-base flex items-center gap-3 shadow-lg"
+            className="font-playfair font-bold mb-4 leading-tight text-glossy"
+            style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}
           >
-            Start Your Growth
-            <motion.span
-              animate={{ x: [0, 6, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <ArrowRight size={18} />
-            </motion.span>
+            <span className="block text-text">Elevate Your</span>
+            <span className="block bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent animate-pulse-glow" style={{
+              backgroundSize: '200% 200%',
+              animation: 'gradientShift 6s ease infinite'
+            }}>
+              Digital Presence
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p 
+            variants={itemVariants}
+            className="font-poppins text-text-muted text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
+          >
+            We craft strategic digital solutions that transform brands into market leaders. From social media excellence to stunning content creation.
+          </motion.p>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20"
+        >
+          <motion.button
+            whileHover={{ scale: 1.08, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-gradient-to-r from-primary to-primary-dark text-white px-10 py-4 rounded-full font-semibold text-base flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Get Started Today
+              <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                <ArrowRight size={18} />
+              </motion.div>
+            </span>
           </motion.button>
           
           <motion.button
-            variants={itemVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => router.push('#services')}
-            className="px-10 py-4 rounded-full btn-outline font-syne font-bold text-base"
+            whileHover={{ scale: 1.08, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-10 py-4 rounded-full font-semibold text-base text-primary border-2 border-primary bg-white/50 hover:bg-white hover:shadow-lg transition-all duration-300 group"
           >
-            View Services
+            Explore Services
           </motion.button>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Stats Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-12 border-t border-white/5"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-12 border-t border-primary/10"
         >
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -6 }}
-              className="group text-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 + i * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+              whileHover={{ y: -8, scale: 1.05 }}
+              className="group cursor-pointer"
             >
-              <motion.div
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: i * 0.2 }}
-                className="flex justify-center mb-3"
-              >
-                <div className="w-12 h-12 rounded-xl hero-shape flex items-center justify-center group-hover:scale-110 transition-transform"
-                  style={{ boxShadow: '0 8px 24px rgba(15,106,61,0.3)' }}>
-                  <stat.icon size={20} className="text-[#0F6A3D]" style={{ filter: 'drop-shadow(0 0 8px rgba(15,106,61,0.6))' }} />
+              <motion.div className="relative">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-light/10 to-primary/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg" />
+                <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white border border-primary/15 shadow-md flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:border-primary/30 group-hover:bg-white transition-all duration-300">
+                  <stat.icon size={28} className="text-primary group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </motion.div>
-              <div className="stat-number text-2xl sm:text-3xl mb-1">{stat.value}</div>
-              <p className="font-poppins text-xs text-[#1F2A1F]/70">{stat.label}</p>
+              <motion.div className="font-cinzel font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text text-transparent mb-1">
+                {stat.value}
+              </motion.div>
+              <p className="font-poppins text-sm text-text-muted">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <motion.div
         animate={{ y: [0, 12, 0] }}
         transition={{ duration: 2.5, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50 hover:opacity-100 transition-opacity"
       >
-        <span className="text-xs font-poppins tracking-widest text-[#1F2A1F]/60">SCROLL</span>
-        <div className="w-px h-6 bg-gradient-to-b from-[#1F2A1F]/50 to-transparent" />
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-sm text-text-muted font-poppins">Scroll to explore</p>
+          <div className="w-px h-8 bg-gradient-to-b from-primary via-primary to-transparent" />
+        </div>
       </motion.div>
     </section>
   )

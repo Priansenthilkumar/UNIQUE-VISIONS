@@ -2,10 +2,9 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle, Lock } from 'lucide-react'
+import { ArrowRight, CheckCircle } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useAuth } from '../context/AuthContext'
 const services = [
   'Social Media Management', 'Creative Poster Design', 'Story Design',
   'Reel Editing (Short)', 'Reel Editing (Long)', 'Video Editing',
@@ -87,8 +86,6 @@ function OrderForm() {
 }
 
 export default function OrderPage() {
-  const { user, openAuth } = useAuth()
-
   return (
     <>
       <Navbar />
@@ -101,40 +98,11 @@ export default function OrderPage() {
             <div className="red-divider mx-auto mt-4" />
           </motion.div>
 
-          {!user ? (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="card-3d rounded-3xl p-10 text-center">
-              <div className="w-16 h-16 rounded-2xl hero-shape flex items-center justify-center mx-auto mb-5" style={{ boxShadow: '0 0 30px rgba(209,0,0,0.3)' }}>
-                <Lock size={28} className="text-white" />
-              </div>
-              <h3 className="font-oswald text-xl font-bold text-white uppercase tracking-wide mb-2">Login Required</h3>
-              <p className="font-dm text-white/50 text-sm mb-6 max-w-sm mx-auto">
-                You can explore our website freely. Please log in or create an account to place your order.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <motion.button onClick={() => openAuth()} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                  className="btn-primary px-8 py-3 rounded-xl font-syne font-bold text-white text-sm">
-                  Login to Continue
-                </motion.button>
-                <motion.button onClick={() => openAuth()} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                  className="btn-outline px-8 py-3 rounded-xl font-syne font-bold text-sm">
-                  Create Account
-                </motion.button>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="card-3d rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/5">
-                <div className="w-8 h-8 rounded-full hero-shape flex items-center justify-center text-white text-sm font-bold">{user.name.charAt(0).toUpperCase()}</div>
-                <div>
-                  <p className="font-syne font-bold text-white text-sm">{user.name}</p>
-                  <p className="font-dm text-white/40 text-xs">{user.email}</p>
-                </div>
-              </div>
-              <Suspense fallback={<div className="font-dm text-sm text-white/30">Loading...</div>}>
-                <OrderForm />
-              </Suspense>
-            </motion.div>
-          )}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="card-3d rounded-3xl p-10">
+            <Suspense fallback={<div className="font-dm text-sm text-white/30">Loading...</div>}>
+              <OrderForm />
+            </Suspense>
+          </motion.div>
         </div>
       </main>
       <Footer />

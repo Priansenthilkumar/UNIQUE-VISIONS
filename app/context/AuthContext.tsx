@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-export interface AuthUser {
+interface AuthUser {
   id: string
   name: string
   email: string
@@ -10,61 +10,56 @@ export interface AuthUser {
 
 interface AuthContextType {
   user: AuthUser | null
-  loading: boolean
-  showAuthModal: boolean
-  pendingAction: (() => void) | null
-  openAuth: (callback?: () => void) => void
+  openAuth: () => void
   closeAuth: () => void
-  setUser: (user: AuthUser | null) => void
-  logout: () => Promise<void>
+  logout: () => void
+  authModalOpen: boolean
 }
 
-const AuthContext = createContext<AuthContextType>({} as AuthContextType)
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const [pendingAction, setPendingAction] = useState<(() => void) | null>(null)
+  const [authModalOpen, setAuthModalOpen] = useState(false)
 
-  // Check session on mount
   useEffect(() => {
-    fetch('/api/auth/me')
-      .then(r => r.json())
-      .then(data => { if (data.user) setUser(data.user) })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/me')
+        if (res.ok) {
+          const data = await res.json()
+          setUser(data.user)
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error)
+      }
+    }
+    checkAuth()
   }, [])
 
-  const openAuth = (callback?: () => void) => {
-    setPendingAction(callback ? () => callback : null)
-    setShowAuthModal(true)
-  }
+  const openAuth = () => setAuthModalOpen(true)
+  const closeAuth = () => setAuthModalOpen(false)
 
-  const closeAuth = () => {
-    setShowAuthModal(false)
-    setPendingAction(null)
-  }
-
-  const handleSetUser = (userData: AuthUser | null) => {
-    setUser(userData)
-    setShowAuthModal(false)
-    if (userData && pendingAction) {
-      setTimeout(() => { pendingAction() }, 300)
-      setPendingAction(null)
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+      setUser(null)
+    } catch (error) {
+      console.error('Logout failed:', error)
     }
   }
 
-  const logout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' })
-    setUser(null)
-  }
-
   return (
-    <AuthContext.Provider value={{ user, loading, showAuthModal, pendingAction, openAuth, closeAuth, setUser: handleSetUser, logout }}>
+    <AuthContext.Provider value={{ user, openAuth, closeAuth, logout, authModalOpen }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export function useAuth() {
+  const context = useContext(AuthContext)
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider')
+  }
+  return context
+}
