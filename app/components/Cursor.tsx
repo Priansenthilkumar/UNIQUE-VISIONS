@@ -11,43 +11,52 @@ export default function Cursor() {
     const ring = ringRef.current
     if (!dot || !ring) return
 
-    let mouseX = 0, mouseY = 0
-    let ringX = 0, ringY = 0
+    let mouseX = -100, mouseY = -100
+    let ringX = -100, ringY = -100
+    let isMoving = false
+    let animId: number
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
-      dot.style.left = mouseX + 'px'
-      dot.style.top = mouseY + 'px'
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`
+      if (!isMoving) {
+        isMoving = true
+        animate()
+      }
     }
 
     const animate = () => {
-      ringX += (mouseX - ringX) * 0.12
-      ringY += (mouseY - ringY) * 0.12
-      ring.style.left = ringX + 'px'
-      ring.style.top = ringY + 'px'
-      requestAnimationFrame(animate)
+      ringX += (mouseX - ringX) * 0.15
+      ringY += (mouseY - ringY) * 0.15
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`
+      
+      if (Math.abs(mouseX - ringX) > 0.1 || Math.abs(mouseY - ringY) > 0.1) {
+        animId = requestAnimationFrame(animate)
+      } else {
+        isMoving = false
+      }
     }
 
     const onEnter = () => setHovering(true)
     const onLeave = () => setHovering(false)
 
-    document.addEventListener('mousemove', onMove)
+    window.addEventListener('mousemove', onMove, { passive: true })
     document.querySelectorAll('a,button,[data-hover]').forEach(el => {
       el.addEventListener('mouseenter', onEnter)
       el.addEventListener('mouseleave', onLeave)
     })
 
-    animate()
     return () => {
-      document.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(animId)
     }
   }, [])
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className={`cursor-ring ${hovering ? 'hovering' : ''}`} />
+      <div ref={dotRef} className="cursor-dot fixed top-0 left-0 pointer-events-none z-[9999] will-change-transform" />
+      <div ref={ringRef} className={`cursor-ring fixed top-0 left-0 pointer-events-none z-[9998] will-change-transform ${hovering ? 'hovering' : ''}`} />
     </>
   )
 }

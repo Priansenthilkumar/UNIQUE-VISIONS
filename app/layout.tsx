@@ -1,16 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Montserrat, Poppins, Cinzel, Playfair_Display, Space_Grotesk, DM_Sans, Cormorant_Garamond, Josefin_Sans } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700','800'], variable: '--font-inter' })
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['300','400','500','600','700','800','900'], variable: '--font-montserrat' })
-const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','700','800'], variable: '--font-poppins' })
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['400','600','700','900'], variable: '--font-cinzel' })
-const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400','500','600','700','800','900'], variable: '--font-playfair' })
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['400','500','600','700'], variable: '--font-space' })
-const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400','500','600','700'], variable: '--font-dm' })
-const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-cormorant' })
-const josefin = Josefin_Sans({ subsets: ['latin'], weight: ['100','200','300','400','600','700'], variable: '--font-josefin' })
 
 export const metadata: Metadata = {
   title: 'Unique Visions | Premium Digital Marketing Agency',
@@ -31,13 +20,21 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: '#060d0a',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${montserrat.variable} ${poppins.variable} ${cinzel.variable} ${playfair.variable} ${spaceGrotesk.variable} ${dmSans.variable} ${cormorant.variable} ${josefin.variable}`}>
-      <body className="bg-[#faf8f5] text-[#2a2a2a] font-inter antialiased">
+    <html lang="en" className="scroll-smooth dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-[#060D0A] text-[#F1F5F9] font-jakarta antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
         {children}
       </body>
     </html>

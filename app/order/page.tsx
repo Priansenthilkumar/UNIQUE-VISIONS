@@ -2,9 +2,10 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, CheckCircle, Sparkles, Rocket } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+
 const services = [
   'Social Media Management', 'Creative Poster Design', 'Story Design',
   'Reel Editing (Short)', 'Reel Editing (Long)', 'Video Editing',
@@ -25,36 +26,36 @@ function OrderForm() {
 
   if (submitted) {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-16">
-        <CheckCircle size={64} className="text-[#1a4d3d] mx-auto mb-6" style={{ filter: 'drop-shadow(0 0 20px rgba(26,77,61,0.5))' }} />
-        <h2 className="font-cormorant font-semibold text-4xl text-[#2a2a2a] mb-3 tracking-wide">Order Received!</h2>
-        <p className="font-poppins text-[#2a2a2a]/60 mb-8">We'll contact you within 24 hours to get started.</p>
-        <motion.a href="/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-full font-josefin font-bold text-white text-sm">
-          Back to Home <ArrowRight size={16} />
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
+        <CheckCircle size={64} className="text-emerald-400 mx-auto mb-6" />
+        <h2 className="font-syne font-extrabold text-3xl text-white mb-3">Order Received!</h2>
+        <p className="font-jakarta text-slate-400 mb-8">We will review your requirements and reach out within 24 hours.</p>
+        <motion.a href="/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn-emerald inline-flex items-center gap-2 px-8 py-3.5 uppercase text-xs tracking-wider font-bold">
+          <span>Back to Home</span> <ArrowRight size={16} />
         </motion.a>
       </motion.div>
     )
   }
 
   return (
-    <form onSubmit={e => { e.preventDefault(); setSubmitted(true) }} className="space-y-5">
+    <form onSubmit={e => { e.preventDefault(); setSubmitted(true) }} className="space-y-6">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="font-montserrat text-xs font-bold text-[#2a2a2a]/40 tracking-widest uppercase block mb-2">Full Name *</label>
-          <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your name" className="input-field w-full px-4 py-3 rounded-xl font-poppins text-sm" />
+          <label className="font-jakarta text-xs font-bold text-slate-400 tracking-widest uppercase block mb-2">Full Name *</label>
+          <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your name" className="input-glass text-sm" />
         </div>
         <div>
-          <label className="font-montserrat text-xs font-bold text-[#2a2a2a]/40 tracking-widest uppercase block mb-2">Phone *</label>
-          <input required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="+91 XXXXX XXXXX" className="input-field w-full px-4 py-3 rounded-xl font-poppins text-sm" />
+          <label className="font-jakarta text-xs font-bold text-slate-400 tracking-widest uppercase block mb-2">Phone *</label>
+          <input required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="+91 XXXXX XXXXX" className="input-glass text-sm" />
         </div>
       </div>
       <div>
-        <label className="font-montserrat text-xs font-bold text-[#2a2a2a]/40 tracking-widest uppercase block mb-2">Email</label>
-        <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" className="input-field w-full px-4 py-3 rounded-xl font-poppins text-sm" />
+        <label className="font-jakarta text-xs font-bold text-slate-400 tracking-widest uppercase block mb-2">Email</label>
+        <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" className="input-glass text-sm" />
       </div>
       <div>
-        <label className="font-montserrat text-xs font-bold text-[#2a2a2a]/40 tracking-widest uppercase block mb-2">Service *</label>
-        <select required value={form.service} onChange={e => setForm({ ...form, service: e.target.value })} className="input-field w-full px-4 py-3 rounded-xl font-poppins text-sm cursor-pointer">
+        <label className="font-jakarta text-xs font-bold text-slate-400 tracking-widest uppercase block mb-2">Service *</label>
+        <select required value={form.service} onChange={e => setForm({ ...form, service: e.target.value })} className="input-glass text-sm bg-[#060D0A]">
           <option value="">Select a service</option>
           {services.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
@@ -62,25 +63,26 @@ function OrderForm() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-3 flex items-start gap-3 bg-[#1a4d3d]/10 border border-[#1a4d3d]/20 rounded-xl p-4"
+            className="mt-3 flex items-start gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4"
           >
-            <span className="text-lg">🚀</span>
+            <Rocket size={20} className="text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <p className="font-montserrat font-bold text-[#1a4d3d] text-xs uppercase tracking-wide mb-1">New Service — Launching Soon</p>
-              <p className="font-poppins text-[#2a2a2a]/60 text-xs leading-relaxed">
-                Our web design service is currently being built — <span className="text-[#1a4d3d] font-semibold">50% AI-powered</span> for speed and <span className="text-[#2a2a2a] font-semibold">50% crafted by our experts</span> for quality. Place your order now and we'll reach out with details!
+              <p className="font-syne font-bold text-emerald-400 text-xs uppercase tracking-wide mb-1">New Service — Launching Soon</p>
+              <p className="font-jakarta text-slate-300 text-xs leading-relaxed">
+                Our web design service combines <span className="text-emerald-300 font-semibold">AI-driven speed</span> with <span className="text-white font-semibold">expert agency finishing</span>. Place your order now to secure priority queue spot!
               </p>
             </div>
           </motion.div>
         )}
       </div>
       <div>
-        <label className="font-montserrat text-xs font-bold text-[#2a2a2a]/40 tracking-widest uppercase block mb-2">Additional Details</label>
-        <textarea rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your brand, goals, or any specific requirements..." className="input-field w-full px-4 py-3 rounded-xl font-poppins text-sm resize-none" />
+        <label className="font-jakarta text-xs font-bold text-slate-400 tracking-widest uppercase block mb-2 font-semibold">Additional Details</label>
+        <textarea rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your brand, goals, or specific timeline requirements..." className="input-glass text-sm resize-none" />
       </div>
-      <motion.button type="submit" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="btn-primary w-full py-4 rounded-full font-montserrat font-bold text-white text-sm flex items-center justify-center gap-2">
-        Place Order <ArrowRight size={16} />
-      </motion.button>
+      <button type="submit" className="btn-emerald w-full py-4 uppercase tracking-wider text-xs font-bold">
+        <span>Place Order Now</span>
+        <ArrowRight size={16} />
+      </button>
     </form>
   )
 }
@@ -89,20 +91,22 @@ export default function OrderPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#faf8f5] pt-32 pb-20">
+      <main className="min-h-screen bg-[#060D0A] pt-36 pb-24">
         <div className="max-w-2xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-center mb-12">
-            <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#1a4d3d] uppercase">Let's Work Together</span>
-            <h1 className="font-cormorant font-semibold text-[clamp(2.5rem,6vw,4rem)] mt-3 text-[#2a2a2a] tracking-wide">Place Your Order</h1>
-            <p className="font-poppins text-[#2a2a2a]/60 mt-4 text-sm leading-relaxed">Fill in the details below and we'll get back to you within 24 hours.</p>
-            <div className="h-0.5 w-16 bg-gradient-to-r from-[#1a4d3d] to-[#7a9d7f] mx-auto mt-4" />
-          </motion.div>
+          <div className="text-center mb-12">
+            <div className="badge-emerald mb-3">
+              <Sparkles size={14} />
+              <span>Direct Booking</span>
+            </div>
+            <h1 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.5rem)] text-white">Place Your Order</h1>
+            <p className="font-jakarta text-slate-400 mt-3 text-sm">Provide your details below and our team will get started.</p>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="card-premium rounded-3xl p-10">
-            <Suspense fallback={<div className="font-poppins text-sm text-[#2a2a2a]/30">Loading...</div>}>
+          <div className="glass-card p-8 md:p-10 border border-white/10 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90">
+            <Suspense fallback={<div className="font-jakarta text-sm text-slate-500">Loading order form...</div>}>
               <OrderForm />
             </Suspense>
-          </motion.div>
+          </div>
         </div>
       </main>
       <Footer />

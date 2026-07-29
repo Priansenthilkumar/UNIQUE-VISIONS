@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Share2, Palette, Film, Video, BarChart2, TrendingUp, Facebook, Globe, ArrowRight, Check } from 'lucide-react'
+import { Share2, Palette, Film, Video, BarChart2, TrendingUp, Facebook, Globe, ArrowRight, Check, Sparkles } from 'lucide-react'
 
 const services = [
   { 
@@ -58,194 +58,85 @@ const services = [
 
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
-  
-  const cardVariants = {
-    hidden: { opacity: 0, y: 48, rotateX: -16, skewY: 4, scale: 0.96 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      rotateX: 0,
-      skewY: 0,
-      scale: 1,
-      transition: { duration: 0.65, delay: (index % 4) * 0.12, ease: [0.34, 1.56, 0.64, 1] }
-    }
-  }
-  
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+
   return (
     <motion.div
       ref={ref}
-      variants={cardVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      whileHover={{ y: -14, rotateY: 6, scale: 1.02 }}
-      className="card-premium glass-liquid p-8 h-full flex flex-col relative group overflow-hidden"
-      style={{ perspective: 1000 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
+      whileHover={{ y: -8 }}
+      className="glass-card p-8 h-full flex flex-col relative group border border-white/10 hover:border-emerald-500/40 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
     >
-      {/* Animated background gradient */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-primary/8 to-secondary/8 opacity-0 group-hover:opacity-100"
-        transition={{ duration: 0.4 }}
-        style={{ pointerEvents: 'none' }}
-      />
-
       {/* Badge */}
       {service.badge && (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-gradient-to-r from-primary-accent via-primary to-primary-dark text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg"
-        >
+        <span className="absolute top-6 right-6 font-syne text-[0.65rem] font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full">
           {service.badge}
-        </motion.div>
+        </span>
       )}
-      
-      {/* Icon Container */}
-      <motion.div 
-        whileHover={{ scale: 1.2, rotateZ: 5 }}
-        className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 group-hover:shadow-glow-md transition-all duration-300 relative"
-      >
-        <motion.div 
-          animate={{ y: [0, -2, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <service.icon size={32} className="icon-primary" />
-        </motion.div>
-        <motion.div 
-          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/30 to-transparent"
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          style={{ pointerEvents: 'none' }}
-        />
-      </motion.div>
 
-      {/* Content */}
-      <motion.h3 
-        className="font-cormorant font-semibold text-xl text-text mb-3 group-hover:text-primary transition-colors duration-300"
-        whileHover={{ x: 4 }}
-      >
+      {/* Icon */}
+      <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
+        <service.icon size={26} />
+      </div>
+
+      {/* Title & Desc */}
+      <h3 className="font-syne text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
         {service.title}
-      </motion.h3>
-      
-      <p className="font-poppins text-text-muted text-sm leading-relaxed mb-6 flex-1">
+      </h3>
+      <p className="font-jakarta text-slate-400 text-sm leading-relaxed mb-6">
         {service.desc}
       </p>
 
-      {/* Features List */}
-      <ul className="space-y-3 mb-8 flex-1">
-        {service.features.map((feature, i) => (
-          <motion.li 
-            key={feature} 
-            initial={{ opacity: 0, x: -10 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.7 + (index % 4) * 0.12 + i * 0.05 }}
-            className="flex items-start gap-2 group/item"
-          >
-            <motion.div
-              whileHover={{ scale: 1.2, rotate: 360 }}
-              transition={{ duration: 0.4 }}
-            >
-              <Check size={18} className="icon-primary mt-0.5 flex-shrink-0" />
-            </motion.div>
-            <span className="text-sm text-text-muted group-hover/item:text-text transition-colors">{feature}</span>
-          </motion.li>
+      {/* Features */}
+      <ul className="space-y-2.5 mb-8 flex-1">
+        {service.features.map((feature) => (
+          <li key={feature} className="flex items-center gap-2.5">
+            <Check size={15} className="text-emerald-400 shrink-0" />
+            <span className="font-jakarta text-xs text-slate-300">{feature}</span>
+          </li>
         ))}
       </ul>
 
-      {/* CTA Button */}
-      <motion.button 
-        whileHover={{ x: 6 }}
-        whileTap={{ scale: 0.98 }}
+      {/* Action Button */}
+      <button
         onClick={() => window.location.href = `/order?service=${encodeURIComponent(service.title)}`}
-        className="flex items-center gap-2 text-primary font-semibold text-sm group/btn hover:text-primary-dark transition-colors"
+        className="w-full btn-glass py-3 text-xs uppercase tracking-wider font-bold group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10 transition-all flex items-center justify-center gap-2"
       >
-        <span>Learn More</span>
-        <motion.div animate={{ x: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ArrowRight size={16} />
-        </motion.div>
-      </motion.button>
+        <span>Book Service</span>
+        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+      </button>
     </motion.div>
   )
 }
 
 export default function Services() {
   return (
-    <section id="services" className="section-padding relative overflow-hidden bg-gradient-premium">
-      {/* Animated background elements */}
-      <motion.div 
-        animate={{ 
-          x: [0, 50, 0], 
-          y: [0, -30, 0],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-0 w-96 h-96 rounded-full bg-gradient-to-l from-primary/15 to-secondary/10 blur-3xl opacity-40 pointer-events-none"
-      />
-      
-      <motion.div 
-        animate={{ 
-          x: [0, -40, 0], 
-          y: [0, 50, 0],
-          scale: [1.1, 1, 1.1]
-        }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-gradient-to-r from-secondary/10 to-primary/15 blur-3xl opacity-30 pointer-events-none"
-      />
-
+    <section id="services" className="section-padding relative overflow-hidden bg-[#060D0A]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
-          className="text-center mb-20"
-        >
-          <motion.span 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="label-josefin inline-block text-primary"
-          >
-            What We Offer
-          </motion.span>
-
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-cormorant font-bold text-5xl md:text-6xl text-text mt-4 mb-6"
-          >
-            Our <span className="bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">Services</span>
-          </motion.h2>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="font-poppins text-text-muted text-lg max-w-2xl mx-auto"
-          >
-            Comprehensive digital solutions designed to elevate your brand and drive measurable results.
-          </motion.p>
-
-          <motion.div 
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="divider-line mx-auto mt-8"
-          />
-        </motion.div>
+        <div className="text-center mb-16">
+          <div className="badge-emerald mb-4">
+            <Sparkles size={14} />
+            <span>What We Offer</span>
+          </div>
+          <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
+            Our <span className="gradient-text-emerald">Services</span>
+          </h2>
+          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-2xl mx-auto mt-4">
+            Comprehensive digital solutions engineered to elevate your brand and maximize market ROI.
+          </p>
+        </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}
         </div>
+
       </div>
     </section>
   )

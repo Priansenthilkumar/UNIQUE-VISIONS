@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, MessageCircle } from 'lucide-react'
+import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, MessageCircle, Sparkles } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Logo from '../components/Logo'
 import Footer from '../components/Footer'
@@ -72,21 +72,21 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="card-3d rounded-2xl overflow-hidden"
+      transition={{ duration: 0.4, delay: index * 0.04 }}
+      className="glass-card border border-white/10 overflow-hidden bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left group"
       >
-        <span className="font-oswald text-base font-semibold text-[#1a1a1a] group-hover:text-[#d10000] transition-colors duration-300 uppercase tracking-wide pr-4">
+        <span className="font-syne text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
           {q}
         </span>
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }} className="flex-shrink-0">
-          <ChevronDown size={18} className={`transition-colors duration-300 ${open ? 'text-[#d10000]' : 'text-[#aaa]'}`} />
+        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown size={18} className={`transition-colors ${open ? 'text-emerald-400' : 'text-slate-400'}`} />
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
@@ -95,10 +95,10 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.2 }}
           >
-            <div className="px-6 pb-5 border-t border-gray-100">
-              <p className="font-dm text-[#666] text-sm leading-relaxed pt-4">{a}</p>
+            <div className="px-6 pb-5 border-t border-white/10">
+              <p className="font-jakarta text-slate-300 text-sm leading-relaxed pt-4">{a}</p>
             </div>
           </motion.div>
         )}
@@ -111,145 +111,111 @@ export default function HelpPage() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#060D0A] text-slate-100 font-jakarta">
 
       {/* Header */}
-      <div className="bg-[#1a1a1a] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#d10000] rounded-full opacity-[0.08] blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#d10000] rounded-full opacity-[0.05] blur-[100px]" />
-
-        {/* Navbar */}
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between relative z-10 border-b border-white/5">
-          <button onClick={() => router.push('/')} className="flex items-center gap-2.5">
-            <Logo size={36} />
-            <span className="font-bebas text-xl tracking-widest text-white">UNIQUE <span className="gradient-text">VISIONS</span></span>
+      <div className="bg-[#0A1410] border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+          <button onClick={() => router.push('/')} className="flex items-center gap-3">
+            <Logo size={36} showText={true} />
           </button>
           <button
             onClick={() => router.push('/')}
-            className="flex items-center gap-1.5 text-sm font-medium text-white/50 hover:text-white transition-colors duration-300 font-dm"
+            className="flex items-center gap-2 text-xs uppercase font-bold text-slate-400 hover:text-emerald-400 transition-colors"
           >
-            <ArrowLeft size={14} /> Back to Home
+            <ArrowLeft size={16} />
+            <span>Back To Home</span>
           </button>
         </div>
 
-        {/* Hero */}
-        <div className="max-w-7xl mx-auto px-6 pt-14 pb-16 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span className="font-syne text-xs font-bold tracking-[0.4em] text-[#d10000] uppercase">Help Center</span>
-            <h1 className="font-oswald text-[clamp(2.5rem,6vw,5rem)] font-bold text-white mt-3 uppercase tracking-wide">
-              How Can We <span className="gradient-text">Help You?</span>
-            </h1>
-            <p className="font-dm text-white/50 mt-4 text-sm max-w-xl mx-auto leading-relaxed">
-              Everything you need to know about working with Unique Visions.
-            </p>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 text-center">
+          <div className="badge-emerald mb-3">
+            <Sparkles size={14} />
+            <span>Help Center & FAQ</span>
+          </div>
+          <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4.5rem)] text-white">
+            How Can We <span className="gradient-text-emerald">Help You?</span>
+          </h1>
+          <p className="font-jakarta text-slate-400 mt-3 text-base max-w-xl mx-auto">
+            Everything you need to know about working with Unique Visions.
+          </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-16">
 
-        {/* How It Works */}
-        <div className="mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14"
-          >
-            <span className="font-syne text-xs font-bold tracking-[0.4em] text-[#d10000] uppercase">The Process</span>
-            <h2 className="font-oswald text-[clamp(2rem,5vw,3.5rem)] font-bold mt-3 gradient-text-dark uppercase tracking-wide">How It Works</h2>
-            <div className="red-divider mx-auto mt-4" />
-          </motion.div>
+        {/* Process Steps */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <div className="badge-emerald mb-3">
+              <span>Step-By-Step Workflow</span>
+            </div>
+            <h2 className="font-syne font-bold text-3xl text-white">How It Works</h2>
+          </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
               <motion.div
                 key={step.step}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="card-3d rounded-3xl p-6 relative overflow-hidden group"
+                className="glass-card p-6 border border-white/10 relative overflow-hidden bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
               >
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#d10000] to-[#ff4444] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 right-4 font-bebas text-6xl text-gray-100 group-hover:text-red-50 transition-colors duration-500 leading-none select-none">
+                <span className="absolute top-2 right-4 font-syne font-extrabold text-5xl text-white/[0.04] select-none">
                   {step.step}
+                </span>
+
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5">
+                  <step.icon size={22} />
                 </div>
-                <div className="relative z-10">
-                  <div
-                    className="w-12 h-12 rounded-2xl hero-shape flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
-                    style={{ boxShadow: '0 8px 24px rgba(209,0,0,0.3)' }}
-                  >
-                    <step.icon size={22} className="text-white" />
-                  </div>
-                  <h3 className="font-oswald text-lg font-bold text-[#1a1a1a] mb-2 uppercase tracking-wide group-hover:text-[#d10000] transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="font-dm text-[#777] text-sm leading-relaxed">{step.desc}</p>
-                </div>
+
+                <h3 className="font-syne font-bold text-lg text-white mb-2">{step.title}</h3>
+                <p className="font-jakarta text-slate-400 text-xs leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* FAQ */}
+        {/* FAQs */}
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14"
-          >
-            <span className="font-syne text-xs font-bold tracking-[0.4em] text-[#d10000] uppercase">Got Questions?</span>
-            <h2 className="font-oswald text-[clamp(2rem,5vw,3.5rem)] font-bold mt-3 gradient-text-dark uppercase tracking-wide">
-              Frequently Asked Questions
-            </h2>
-            <div className="red-divider mx-auto mt-4" />
-          </motion.div>
+          <div className="text-center mb-12">
+            <div className="badge-emerald mb-3">
+              <span>Questions Answered</span>
+            </div>
+            <h2 className="font-syne font-bold text-3xl text-white">Frequently Asked Questions</h2>
+          </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, i) => (
               <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
             ))}
           </div>
 
-          {/* Still need help CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mt-16"
-          >
-            <div className="card-3d rounded-3xl p-10 max-w-xl mx-auto relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#d10000] to-[#ff4444]" />
-              <h3 className="font-oswald text-2xl font-bold text-[#1a1a1a] uppercase tracking-wide mb-2">Still Need Help?</h3>
-              <p className="font-dm text-[#777] text-sm mb-6">Can't find your answer? Reach out to us directly — we're always happy to help.</p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <motion.a
-                  href="https://wa.me/919363964142"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-syne font-bold text-white text-sm"
-                >
-                  <MessageCircle size={15} /> Chat on WhatsApp
-                </motion.a>
-                <motion.button
-                  onClick={() => router.push('/#contact')}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-syne font-bold text-sm"
-                >
-                  Contact Us
-                </motion.button>
-              </div>
+          {/* Contact Trigger Callout */}
+          <div className="glass-card p-8 text-center max-w-xl mx-auto mt-16 border border-white/10">
+            <h3 className="font-syne font-bold text-xl text-white mb-2">Still Need Help?</h3>
+            <p className="font-jakarta text-slate-400 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/919363964142"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-emerald px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={16} />
+                <span>Chat on WhatsApp</span>
+              </a>
+              <button
+                onClick={() => router.push('/#contact')}
+                className="btn-glass px-6 py-3 uppercase text-xs tracking-wider font-bold"
+              >
+                <span>Contact Us</span>
+              </button>
             </div>
-          </motion.div>
+          </div>
+
         </div>
 
       </div>
