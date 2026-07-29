@@ -71,22 +71,18 @@ const steps = [
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.04 }}
-      className="glass-card border border-white/10 overflow-hidden bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
+    <div
+      className="glass-card border border-rose-500/20 overflow-hidden bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left group"
       >
-        <span className="font-syne text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
+        <span className="font-syne text-base font-bold text-white group-hover:text-rose-400 transition-colors">
           {q}
         </span>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown size={18} className={`transition-colors ${open ? 'text-emerald-400' : 'text-slate-400'}`} />
+          <ChevronDown size={18} className={`transition-colors ${open ? 'text-rose-400' : 'text-slate-400'}`} />
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
@@ -103,7 +99,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
 
@@ -111,17 +107,17 @@ export default function HelpPage() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-[#060D0A] text-slate-100 font-jakarta">
+    <div className="min-h-screen bg-[#0B0304] text-slate-100 font-jakarta">
 
       {/* Header */}
-      <div className="bg-[#0A1410] border-b border-white/10">
+      <div className="bg-[#120507] border-b border-rose-500/20">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <button onClick={() => router.push('/')} className="flex items-center gap-3">
             <Logo size={36} showText={true} />
           </button>
           <button
             onClick={() => router.push('/')}
-            className="flex items-center gap-2 text-xs uppercase font-bold text-slate-400 hover:text-emerald-400 transition-colors"
+            className="flex items-center gap-2 text-xs uppercase font-bold text-slate-400 hover:text-rose-400 transition-colors"
           >
             <ArrowLeft size={16} />
             <span>Back To Home</span>
@@ -129,14 +125,14 @@ export default function HelpPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 text-center">
-          <div className="badge-emerald mb-3">
+          <div className="badge-crimson mb-3">
             <Sparkles size={14} />
             <span>Help Center & FAQ</span>
           </div>
           <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4.5rem)] text-white">
-            How Can We <span className="gradient-text-emerald">Help You?</span>
+            How Can We <span className="gradient-text-crimson">Help You?</span>
           </h1>
-          <p className="font-jakarta text-slate-400 mt-3 text-base max-w-xl mx-auto">
+          <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto">
             Everything you need to know about working with Unique Visions.
           </p>
         </div>
@@ -147,7 +143,7 @@ export default function HelpPage() {
         {/* Process Steps */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <div className="badge-emerald mb-3">
+            <div className="badge-crimson mb-3">
               <span>Step-By-Step Workflow</span>
             </div>
             <h2 className="font-syne font-bold text-3xl text-white">How It Works</h2>
@@ -155,25 +151,21 @@ export default function HelpPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <motion.div
+              <div
                 key={step.step}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass-card p-6 border border-white/10 relative overflow-hidden bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
+                className="glass-card p-6 border border-rose-500/20 relative overflow-hidden bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
               >
                 <span className="absolute top-2 right-4 font-syne font-extrabold text-5xl text-white/[0.04] select-none">
                   {step.step}
                 </span>
 
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-5">
                   <step.icon size={22} />
                 </div>
 
                 <h3 className="font-syne font-bold text-lg text-white mb-2">{step.title}</h3>
-                <p className="font-jakarta text-slate-400 text-xs leading-relaxed">{step.desc}</p>
-              </motion.div>
+                <p className="font-jakarta text-slate-300 text-xs leading-relaxed">{step.desc}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -181,7 +173,7 @@ export default function HelpPage() {
         {/* FAQs */}
         <div>
           <div className="text-center mb-12">
-            <div className="badge-emerald mb-3">
+            <div className="badge-crimson mb-3">
               <span>Questions Answered</span>
             </div>
             <h2 className="font-syne font-bold text-3xl text-white">Frequently Asked Questions</h2>
@@ -194,21 +186,21 @@ export default function HelpPage() {
           </div>
 
           {/* Contact Trigger Callout */}
-          <div className="glass-card p-8 text-center max-w-xl mx-auto mt-16 border border-white/10">
+          <div className="glass-card p-8 text-center max-w-xl mx-auto mt-16 border border-rose-500/20">
             <h3 className="font-syne font-bold text-xl text-white mb-2">Still Need Help?</h3>
-            <p className="font-jakarta text-slate-400 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
+            <p className="font-jakarta text-slate-300 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="https://wa.me/919363964142"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-emerald px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
+                className="btn-crimson px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
               >
                 <MessageCircle size={16} />
                 <span>Chat on WhatsApp</span>
               </a>
               <button
-                onClick={() => router.push('/#contact')}
+                onClick={() => router.push('/contact')}
                 className="btn-glass px-6 py-3 uppercase text-xs tracking-wider font-bold"
               >
                 <span>Contact Us</span>

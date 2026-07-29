@@ -17,16 +17,12 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
       className={`glass-card p-8 h-full flex flex-col relative border ${
         plan.popular
-          ? 'border-amber-500/50 bg-gradient-to-b from-[#19140A]/90 to-[#0F1F19]/90 shadow-xl shadow-amber-950/30'
-          : 'border-white/10 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90'
+          ? 'border-amber-500/50 bg-gradient-to-b from-[#240B0E]/90 to-[#1A070A]/90 shadow-xl shadow-amber-950/30'
+          : 'border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90'
       }`}
     >
       {/* Popular Badge */}
@@ -41,7 +37,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
 
       <div className={`mb-6 ${plan.popular ? 'pt-4' : ''}`}>
         <h3 className="font-syne font-bold text-lg text-white mb-2">{plan.name}</h3>
-        <p className="font-jakarta text-slate-400 text-xs">{plan.desc}</p>
+        <p className="font-jakarta text-slate-300 text-xs">{plan.desc}</p>
       </div>
 
       <div className="mb-8 flex items-baseline gap-1">
@@ -54,7 +50,7 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
       <ul className="space-y-3 mb-8 flex-1">
         {plan.features.map((f) => (
           <li key={f} className="flex items-center gap-2.5">
-            <Check size={14} className={plan.popular ? 'text-amber-400' : 'text-emerald-400'} />
+            <Check size={14} className={plan.popular ? 'text-amber-400' : 'text-rose-400'} />
             <span className="font-jakarta text-xs text-slate-300">{f}</span>
           </li>
         ))}
@@ -65,30 +61,30 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
         className={`w-full py-3.5 uppercase text-xs tracking-wider font-bold rounded-full transition-all ${
           plan.popular
             ? 'btn-gold'
-            : 'btn-emerald'
+            : 'btn-crimson'
         }`}
       >
         <span>Order Now</span>
       </button>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section-padding relative overflow-hidden bg-[#060D0A]">
+    <section id="pricing" className="section-padding relative overflow-hidden bg-[#0B0304]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="badge-emerald mb-4">
+          <div className="badge-crimson mb-4">
             <Sparkles size={14} />
             <span>Transparent Rates</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            Simple & Honest <span className="gradient-text-emerald">Pricing</span>
+            Simple & Honest <span className="gradient-text-crimson">Pricing</span>
           </h2>
-          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-xl mx-auto mt-4">
+          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-xl mx-auto mt-4">
             High quality services designed to fit your marketing budget. Zero hidden costs.
           </p>
         </div>
@@ -101,9 +97,9 @@ export default function Pricing() {
         </div>
 
         {/* Custom Package Callout */}
-        <div className="glass-card p-8 md:p-10 border border-white/10 text-center max-w-3xl mx-auto">
+        <div className="glass-card p-8 md:p-10 border border-rose-500/20 text-center max-w-3xl mx-auto">
           <h3 className="font-syne font-bold text-2xl text-white mb-2">Need A Tailored Custom Package?</h3>
-          <p className="font-jakarta text-slate-400 text-sm mb-6">
+          <p className="font-jakarta text-slate-300 text-sm mb-6">
             We can craft custom multi-service monthly contracts or custom video editing bundles tailored specifically to your scope.
           </p>
           <button

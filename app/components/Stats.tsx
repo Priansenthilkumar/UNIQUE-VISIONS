@@ -41,19 +41,19 @@ export default function Stats() {
   const router = useRouter()
 
   return (
-    <section className="section-padding relative overflow-hidden bg-[#060D0A]">
+    <section className="section-padding relative overflow-hidden bg-[#0B0304]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="badge-emerald mb-4">
+          <div className="badge-crimson mb-4">
             <Sparkles size={14} />
             <span>Achievement</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            By The <span className="gradient-text-emerald">Numbers</span>
+            By The <span className="gradient-text-crimson">Numbers</span>
           </h2>
-          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-xl mx-auto mt-4">
+          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-xl mx-auto mt-4">
             Proven performance metrics reflecting real results for our client portfolio.
           </p>
         </div>
@@ -61,32 +61,27 @@ export default function Stats() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, i) => (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="glass-card p-8 text-center border border-white/10 hover:border-emerald-500/40 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
+              className="glass-card p-8 text-center border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
             >
-              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-5">
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto mb-5">
                 <stat.icon size={26} />
               </div>
 
               <Counter value={stat.value} suffix={stat.suffix} />
 
-              <div className="w-10 h-0.5 bg-emerald-500/30 mx-auto my-3 rounded-full" />
+              <div className="w-10 h-0.5 bg-rose-500/30 mx-auto my-3 rounded-full" />
 
               <p className="font-jakarta text-xs uppercase tracking-widest text-slate-400">
                 {stat.label}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA Banner */}
-        <div className="glass-card-gold p-10 md:p-14 text-center relative overflow-hidden bg-gradient-to-r from-[#14100A] via-[#1F190F] to-[#0A1410]">
+        <div className="glass-card-gold p-10 md:p-14 text-center relative overflow-hidden bg-gradient-to-r from-[#200A0D] via-[#1A070A] to-[#120507]">
           <span className="font-syne text-xs uppercase tracking-widest text-amber-400 font-bold block mb-3">
             Ready To Scale Your Brand?
           </span>

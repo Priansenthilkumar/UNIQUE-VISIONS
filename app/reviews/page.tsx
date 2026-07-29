@@ -1,7 +1,7 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { Star, Send, User, Briefcase, MessageSquare, CheckCircle, Quote, Sparkles } from 'lucide-react'
+import { Star, User, Briefcase, MessageSquare, CheckCircle, Quote, Sparkles } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -42,20 +42,17 @@ function StarDisplay({ value }: { value: number }) {
 
 function ReviewCard({ review, index }: { review: Review; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="glass-card p-6 border border-white/10 flex flex-col justify-between hover:border-emerald-500/30 transition-all bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
+    <div
+      className="glass-card p-6 border border-rose-500/20 flex flex-col justify-between hover:border-rose-500/40 transition-all bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
     >
       <div>
         <div className="flex items-center justify-between mb-3">
           <StarDisplay value={review.rating} />
-          <span className="font-syne text-[0.65rem] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+          <span className="font-syne text-[0.65rem] font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
             {review.service}
           </span>
         </div>
-        <Quote size={20} className="text-emerald-400/40 mb-2" />
+        <Quote size={20} className="text-rose-400/40 mb-2" />
         <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
           "{review.text}"
         </p>
@@ -63,7 +60,7 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
 
       <div className="flex items-center justify-between pt-4 border-t border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-syne font-bold text-sm border border-emerald-500/30">
+          <div className="w-9 h-9 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-syne font-bold text-sm border border-rose-500/30">
             {review.name.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -71,9 +68,9 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
             <p className="font-jakarta text-slate-400 text-xs">{review.role}</p>
           </div>
         </div>
-        <span className="font-jakarta text-slate-500 text-xs">{review.date}</span>
+        <span className="font-jakarta text-slate-400 text-xs">{review.date}</span>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -92,15 +89,6 @@ export default function ReviewsPage() {
       if (stored) setReviews(JSON.parse(stored))
     } catch {}
   }, [])
-
-  const avgRating = reviews.length
-    ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1) : '5.0'
-
-  const ratingCounts = [5,4,3,2,1].map(star => ({
-    star,
-    count: reviews.filter(r => r.rating === star).length,
-    pct: reviews.length ? Math.round((reviews.filter(r => r.rating === star).length / reviews.length) * 100) : 0,
-  }))
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -130,7 +118,7 @@ export default function ReviewsPage() {
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-[#060D0A] text-slate-100">
+    <div className="min-h-screen bg-[#0B0304] text-slate-100 font-jakarta">
       <Navbar />
 
       <main className="pt-36 pb-24">
@@ -138,14 +126,14 @@ export default function ReviewsPage() {
 
           {/* Page Header */}
           <div className="text-center mb-16">
-            <div className="badge-emerald mb-3">
+            <div className="badge-crimson mb-3">
               <Sparkles size={14} />
               <span>Real Testimonials</span>
             </div>
             <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4rem)] text-white">
-              Client Feedback & <span className="gradient-text-emerald">Reviews</span>
+              Client Feedback & <span className="gradient-text-crimson">Reviews</span>
             </h1>
-            <p className="font-jakarta text-slate-400 mt-3 text-base max-w-xl mx-auto">
+            <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto">
               Real reviews from real business owners who trust Unique Visions.
             </p>
           </div>
@@ -162,10 +150,10 @@ export default function ReviewsPage() {
               </div>
 
               {reviews.length === 0 ? (
-                <div className="glass-card p-12 text-center border border-white/10">
-                  <MessageSquare size={36} className="text-emerald-400 mx-auto mb-4" />
+                <div className="glass-card p-12 text-center border border-rose-500/20">
+                  <MessageSquare size={36} className="text-rose-400 mx-auto mb-4" />
                   <h3 className="font-syne font-bold text-lg text-white mb-2">No custom reviews posted yet</h3>
-                  <p className="font-jakarta text-slate-400 text-sm">Be the first to share your experience with Unique Visions!</p>
+                  <p className="font-jakarta text-slate-300 text-sm">Be the first to share your experience with Unique Visions!</p>
                 </div>
               ) : (
                 <div className="grid sm:grid-cols-2 gap-6">
@@ -177,12 +165,12 @@ export default function ReviewsPage() {
             </div>
 
             {/* Form Column */}
-            <div className="glass-card p-8 border border-white/10 h-fit bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90">
+            <div className="glass-card p-8 border border-rose-500/20 h-fit bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90">
               <h3 className="font-syne font-bold text-xl text-white mb-2">Leave A Review</h3>
-              <p className="font-jakarta text-slate-400 text-xs mb-6">Share your rating and feedback on our work.</p>
+              <p className="font-jakarta text-slate-300 text-xs mb-6">Share your rating and feedback on our work.</p>
 
               {sent && (
-                <div className="p-4 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center gap-2">
+                <div className="p-4 mb-6 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold flex items-center gap-2">
                   <CheckCircle size={16} />
                   <span>Thank you! Your review has been posted.</span>
                 </div>
@@ -190,35 +178,35 @@ export default function ReviewsPage() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Rating *</label>
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Rating *</label>
                   <StarPicker value={form.rating} onChange={v => { setForm(p => ({ ...p, rating: v })); setError('') }} />
                   {error && <p className="text-rose-400 text-xs mt-2">{error}</p>}
                 </div>
 
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Your Name *</label>
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Your Name *</label>
                   <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className="input-glass text-sm" />
                 </div>
 
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Role / Business</label>
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Role / Business</label>
                   <input type="text" name="role" value={form.role} onChange={handleChange} placeholder="e.g. Founder, Brand X" className="input-glass text-sm" />
                 </div>
 
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Service Used</label>
-                  <select name="service" value={form.service} onChange={handleChange} className="input-glass text-sm bg-[#060D0A]">
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Service Used</label>
+                  <select name="service" value={form.service} onChange={handleChange} className="input-glass text-sm bg-[#0B0304]">
                     <option value="">Select a service</option>
                     {services.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Review Message *</label>
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Review Message *</label>
                   <textarea name="text" value={form.text} onChange={handleChange} required rows={4} placeholder="Describe your experience working with us..." className="input-glass text-sm resize-none" />
                 </div>
 
-                <button type="submit" disabled={sending || sent} className="btn-emerald w-full py-3.5 uppercase tracking-wider text-xs font-bold">
+                <button type="submit" disabled={sending || sent} className="btn-crimson w-full py-3.5 uppercase tracking-wider text-xs font-bold">
                   {sending ? 'Posting Review...' : 'Submit Review'}
                 </button>
               </form>

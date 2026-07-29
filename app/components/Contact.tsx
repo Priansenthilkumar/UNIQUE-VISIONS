@@ -1,7 +1,6 @@
 'use client'
-import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Send, MessageCircle, Instagram, Facebook, Sparkles, MapPin, Phone, Mail } from 'lucide-react'
+import { Send, MessageCircle, Sparkles, MapPin, Phone } from 'lucide-react'
 
 const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'
 const TELEGRAM_CHAT_ID   = 'YOUR_CHAT_ID'
@@ -47,19 +46,19 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden bg-[#060D0A]">
+    <section id="contact" className="section-padding relative overflow-hidden bg-[#0B0304]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="badge-emerald mb-4">
+          <div className="badge-crimson mb-4">
             <Sparkles size={14} />
             <span>Get In Touch</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            Let's Start <span className="gradient-text-emerald">Building</span>
+            Let's Start <span className="gradient-text-crimson">Building</span>
           </h2>
-          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-xl mx-auto mt-4">
+          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-xl mx-auto mt-4">
             Have a project in mind? Reach out to us and let's craft a winning strategy together.
           </p>
         </div>
@@ -70,21 +69,21 @@ export default function Contact() {
           <div className="space-y-6">
 
             {/* Quick Contact Info Card */}
-            <div className="glass-card p-8 border border-white/10 space-y-6">
+            <div className="glass-card p-8 border border-rose-500/20 space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
                   <Phone size={22} />
                 </div>
                 <div>
                   <p className="font-syne text-xs uppercase tracking-widest text-slate-400">Call / Message Us</p>
-                  <a href="tel:+919363964142" className="font-syne font-bold text-white text-lg hover:text-emerald-400 transition-colors">
+                  <a href="tel:+919363964142" className="font-syne font-bold text-white text-lg hover:text-rose-400 transition-colors">
                     +91 9363964142
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
                   <MapPin size={22} />
                 </div>
                 <div>
@@ -95,7 +94,7 @@ export default function Contact() {
             </div>
 
             {/* Google Map */}
-            <div className="glass-card p-2 border border-white/10 overflow-hidden rounded-3xl">
+            <div className="glass-card p-2 border border-rose-500/20 overflow-hidden rounded-3xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62650.47779287406!2d78.1247!3d11.4646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab8441f4c3f4f9%3A0x8b1e6c7e7b1e6c7e!2sRasipuram%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
@@ -114,10 +113,10 @@ export default function Contact() {
               href="https://wa.me/919363964142?text=Hi%20Unique%20Visions!"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card p-6 border border-emerald-500/30 flex items-center justify-between hover:border-emerald-500/60 transition-all group"
+              className="glass-card p-6 border border-rose-500/30 flex items-center justify-between hover:border-rose-500/60 transition-all group"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
                   <MessageCircle size={24} />
                 </div>
                 <div>
@@ -125,13 +124,13 @@ export default function Contact() {
                   <p className="font-jakarta text-xs text-slate-400">Direct response within minutes</p>
                 </div>
               </div>
-              <Send size={18} className="text-emerald-400 group-hover:translate-x-1 transition-transform" />
+              <Send size={18} className="text-rose-400 group-hover:translate-x-1 transition-transform" />
             </a>
 
           </div>
 
           {/* Right - Dark Glass Inquiry Form */}
-          <div className="glass-card p-8 md:p-10 border border-white/10 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90">
+          <div className="glass-card p-8 md:p-10 border border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90">
             <h3 className="font-syne font-bold text-2xl text-white mb-6">Send An Inquiry</h3>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -180,7 +179,7 @@ export default function Contact() {
                   name="service"
                   value={form.service}
                   onChange={handleChange}
-                  className="input-glass text-sm bg-[#060D0A]"
+                  className="input-glass text-sm bg-[#0B0304]"
                 >
                   <option value="">Select a service</option>
                   <option value="Social Media Management">Social Media Management</option>
@@ -194,7 +193,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Project Details</label>
+                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold font-jakarta">Project Details</label>
                 <textarea
                   name="message"
                   value={form.message}
@@ -208,7 +207,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={sending || sent}
-                className="btn-emerald w-full py-4 uppercase tracking-wider text-xs font-bold"
+                className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold"
               >
                 {sent ? (
                   <span>✓ Message Sent Successfully!</span>

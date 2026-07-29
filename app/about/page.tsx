@@ -11,26 +11,26 @@ export default function AboutPage() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-[#060D0A] text-slate-100 font-jakarta">
+    <div className="min-h-screen bg-[#0B0304] text-slate-100 font-jakarta">
       <Navbar />
 
       <main className="pt-36">
         {/* Page Header Hero */}
-        <section className="relative py-16 bg-[#0A1410] border-b border-white/10 overflow-hidden">
+        <section className="relative py-16 bg-[#120507] border-b border-rose-500/20 overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="badge-emerald mb-3">
+              <div className="badge-crimson mb-3">
                 <Sparkles size={14} />
                 <span>Agency Overview</span>
               </div>
               <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4.5rem)] text-white">
-                About <span className="gradient-text-emerald">Unique Visions</span>
+                About <span className="gradient-text-crimson">Unique Visions</span>
               </h1>
-              <p className="font-jakarta text-slate-400 mt-3 text-base max-w-xl mx-auto">
+              <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto">
                 Discover our journey, mission, values, and why leading brands choose us as their growth partner.
               </p>
             </motion.div>
@@ -44,18 +44,18 @@ export default function AboutPage() {
         <WhyUs />
 
         {/* Bottom CTA Banner */}
-        <section className="py-20 bg-[#0A1410] border-t border-white/10">
+        <section className="py-20 bg-[#120507] border-t border-rose-500/20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="font-syne font-extrabold text-3xl md:text-4xl text-white mb-4">
               Ready To Elevate Your Brand Strategy?
             </h2>
-            <p className="font-jakarta text-slate-400 text-base mb-8 max-w-xl mx-auto">
+            <p className="font-jakarta text-slate-300 text-base mb-8 max-w-xl mx-auto">
               Partner with Unique Visions and start converting your audience into loyal customers today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => router.push('/order')}
-                className="btn-emerald px-8 py-4 uppercase text-xs tracking-widest font-bold"
+                className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold"
               >
                 <span>Start Your Project</span>
                 <ArrowRight size={16} />

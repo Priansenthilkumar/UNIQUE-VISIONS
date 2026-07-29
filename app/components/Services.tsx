@@ -61,13 +61,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
-      whileHover={{ y: -8 }}
-      className="glass-card p-8 h-full flex flex-col relative group border border-white/10 hover:border-emerald-500/40 bg-gradient-to-b from-[#0A1410]/90 to-[#0F1F19]/90"
+      className="glass-card p-8 h-full flex flex-col relative group border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
     >
       {/* Badge */}
       {service.badge && (
@@ -77,15 +73,15 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       )}
 
       {/* Icon */}
-      <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
+      <div className="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-rose-500/20 transition-all">
         <service.icon size={26} />
       </div>
 
       {/* Title & Desc */}
-      <h3 className="font-syne text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+      <h3 className="font-syne text-xl font-bold text-white mb-3 group-hover:text-rose-400 transition-colors">
         {service.title}
       </h3>
-      <p className="font-jakarta text-slate-400 text-sm leading-relaxed mb-6">
+      <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
         {service.desc}
       </p>
 
@@ -93,7 +89,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <ul className="space-y-2.5 mb-8 flex-1">
         {service.features.map((feature) => (
           <li key={feature} className="flex items-center gap-2.5">
-            <Check size={15} className="text-emerald-400 shrink-0" />
+            <Check size={15} className="text-rose-400 shrink-0" />
             <span className="font-jakarta text-xs text-slate-300">{feature}</span>
           </li>
         ))}
@@ -102,30 +98,30 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       {/* Action Button */}
       <button
         onClick={() => window.location.href = `/order?service=${encodeURIComponent(service.title)}`}
-        className="w-full btn-glass py-3 text-xs uppercase tracking-wider font-bold group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10 transition-all flex items-center justify-center gap-2"
+        className="w-full btn-glass py-3 text-xs uppercase tracking-wider font-bold group-hover:border-rose-500/50 group-hover:bg-rose-500/15 transition-all flex items-center justify-center gap-2"
       >
         <span>Book Service</span>
         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
       </button>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Services() {
   return (
-    <section id="services" className="section-padding relative overflow-hidden bg-[#060D0A]">
+    <section id="services" className="section-padding relative overflow-hidden bg-[#0B0304]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="badge-emerald mb-4">
+          <div className="badge-crimson mb-4">
             <Sparkles size={14} />
             <span>What We Offer</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            Our <span className="gradient-text-emerald">Services</span>
+            Our <span className="gradient-text-crimson">Services</span>
           </h2>
-          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-2xl mx-auto mt-4">
+          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-2xl mx-auto mt-4">
             Comprehensive digital solutions engineered to elevate your brand and maximize market ROI.
           </p>
         </div>

@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Instagram, Facebook, MessageCircle, Phone, MapPin, ArrowUp } from 'lucide-react'
 import Logo from './Logo'
 import { useRouter } from 'next/navigation'
@@ -39,7 +38,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#040907] border-t border-white/10 text-slate-400 font-jakarta pt-20 pb-12 overflow-hidden">
+    <footer className="relative bg-[#080203] border-t border-rose-500/20 text-slate-400 font-jakarta pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -63,7 +62,7 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-[#0A1410] border border-white/10 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40 transition-all"
+                  className="w-10 h-10 rounded-xl bg-[#120507] border border-rose-500/20 flex items-center justify-center text-slate-400 hover:text-rose-400 hover:border-rose-500/50 transition-all"
                   title={s.label}
                 >
                   <s.icon size={18} />
@@ -82,7 +81,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <button
                     onClick={() => handleLink(link.href)}
-                    className="font-jakarta text-xs text-slate-400 hover:text-emerald-400 transition-colors uppercase tracking-wider"
+                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider"
                   >
                     {link.label}
                   </button>
@@ -101,7 +100,7 @@ export default function Footer() {
                 <li key={s}>
                   <button
                     onClick={() => router.push(`/order?service=${encodeURIComponent(s)}`)}
-                    className="font-jakarta text-xs text-slate-400 hover:text-emerald-400 transition-colors uppercase tracking-wider text-left"
+                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider text-left"
                   >
                     {s}
                   </button>
@@ -117,16 +116,16 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Phone size={18} className="text-emerald-400 shrink-0 mt-1" />
+                <Phone size={18} className="text-rose-400 shrink-0 mt-1" />
                 <div>
                   <p className="text-xs uppercase text-slate-500 font-bold">Call Us</p>
-                  <a href="tel:+919363964142" className="text-sm font-semibold text-white hover:text-emerald-400 transition-colors">
+                  <a href="tel:+919363964142" className="text-sm font-semibold text-white hover:text-rose-400 transition-colors">
                     +91 9363964142
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin size={18} className="text-emerald-400 shrink-0 mt-1" />
+                <MapPin size={18} className="text-rose-400 shrink-0 mt-1" />
                 <div>
                   <p className="text-xs uppercase text-slate-500 font-bold">Location</p>
                   <p className="text-sm font-semibold text-white">Rasipuram, Tamil Nadu</p>
@@ -142,7 +141,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Unique Visions. All Rights Reserved.</p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-bold uppercase tracking-wider transition-colors"
+            className="flex items-center gap-2 text-rose-400 hover:text-rose-300 font-bold uppercase tracking-wider transition-colors"
           >
             <span>Back To Top</span>
             <ArrowUp size={16} />
