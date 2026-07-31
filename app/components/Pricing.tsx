@@ -19,39 +19,49 @@ function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) 
   return (
     <div
       ref={ref}
-      className={`glass-card p-8 h-full flex flex-col relative border ${
+      className={`p-7 h-full flex flex-col relative transition-all duration-300 ${
         plan.popular
-          ? 'border-amber-500/50 bg-gradient-to-b from-[#240B0E]/90 to-[#1A070A]/90 shadow-xl shadow-amber-950/30'
-          : 'border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90'
+          ? 'glass-card-gold bg-gradient-to-b from-[#251708]/95 via-[#1C1206]/95 to-[#120B03]/95 shadow-xl shadow-amber-950/40 border-amber-500/50 scale-[1.02] z-10'
+          : 'glass-card border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90'
       }`}
     >
       {/* Popular Badge */}
       {plan.popular && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-          <div className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-4 py-1 rounded-full font-syne text-[0.65rem] font-black uppercase tracking-wider shadow-lg shadow-amber-500/30">
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
+          <div className="flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-600 text-slate-950 px-4 py-1 rounded-full font-syne text-[0.65rem] font-black uppercase tracking-wider shadow-lg shadow-amber-500/40 border border-amber-300/50">
             <Zap size={12} fill="currentColor" />
             <span>MOST POPULAR</span>
           </div>
         </div>
       )}
 
-      <div className={`mb-6 ${plan.popular ? 'pt-4' : ''}`}>
-        <h3 className="font-syne font-bold text-lg text-white mb-2">{plan.name}</h3>
-        <p className="font-jakarta text-slate-300 text-xs">{plan.desc}</p>
+      {/* Decorative Gold Ambient Glow */}
+      {plan.popular && (
+        <div className="absolute -top-12 -left-12 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      )}
+
+      {/* Title & Description Container with Min-Height for Alignment */}
+      <div className={`mb-6 min-h-[90px] flex flex-col justify-start ${plan.popular ? 'pt-5' : 'pt-2'}`}>
+        <h3 className={`font-syne font-bold text-lg leading-snug mb-1.5 block ${plan.popular ? 'gradient-text-gold' : 'text-white'}`}>
+          {plan.name}
+        </h3>
+        <p className={`font-jakarta text-xs leading-relaxed block ${plan.popular ? 'text-amber-100/80' : 'text-slate-300'}`}>
+          {plan.desc}
+        </p>
       </div>
 
       <div className="mb-8 flex items-baseline gap-1">
-        <span className={`font-syne text-4xl font-extrabold ${plan.popular ? 'text-amber-400' : 'text-white'}`}>
+        <span className={`font-syne text-4xl font-extrabold ${plan.popular ? 'gradient-text-gold drop-shadow-sm' : 'text-white'}`}>
           {plan.price}
         </span>
-        <span className="font-jakarta text-xs text-slate-400">{plan.period}</span>
+        <span className={`font-jakarta text-xs ${plan.popular ? 'text-amber-400/80' : 'text-slate-400'}`}>{plan.period}</span>
       </div>
 
       <ul className="space-y-3 mb-8 flex-1">
         {plan.features.map((f) => (
           <li key={f} className="flex items-center gap-2.5">
-            <Check size={14} className={plan.popular ? 'text-amber-400' : 'text-rose-400'} />
-            <span className="font-jakarta text-xs text-slate-300">{f}</span>
+            <Check size={14} className={plan.popular ? 'text-amber-400 shrink-0' : 'text-rose-400 shrink-0'} />
+            <span className={`font-jakarta text-xs ${plan.popular ? 'text-amber-100/90' : 'text-slate-300'}`}>{f}</span>
           </li>
         ))}
       </ul>
@@ -76,7 +86,7 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="badge-crimson mb-4">
             <Sparkles size={14} />
             <span>Transparent Rates</span>
@@ -90,7 +100,7 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 pt-6 mb-16">
           {plans.map((plan, i) => (
             <PricingCard key={plan.name} plan={plan} index={i} />
           ))}

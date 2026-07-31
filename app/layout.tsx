@@ -20,21 +20,13 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#060d0a',
+  themeColor: '#0B0304',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="bg-[#060D0A] text-[#F1F5F9] font-jakarta antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+      <body className="bg-[#0B0304] text-[#FFFFFF] font-jakarta antialiased selection:bg-rose-500/40 selection:text-white">
         {children}
       </body>
     </html>
