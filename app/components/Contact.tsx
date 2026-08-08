@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Send, MessageCircle, Sparkles, MapPin, Phone } from 'lucide-react'
+import { Send, MessageCircle, Sparkles, MapPin, Phone, Instagram } from 'lucide-react'
 
 const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'
 const TELEGRAM_CHAT_ID   = 'YOUR_CHAT_ID'
@@ -122,6 +122,25 @@ export default function Contact() {
                 <div>
                   <h4 className="font-syne font-bold text-white text-base">Instant WhatsApp Chat</h4>
                   <p className="font-jakarta text-xs text-slate-400">Direct response within minutes</p>
+                </div>
+              </div>
+              <Send size={18} className="text-rose-400 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            {/* Direct Instagram Action */}
+            <a
+              href="https://www.instagram.com/_unique__visions_?igsh=dWtrYTRxeDZ4cng2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card p-6 border border-rose-500/30 flex items-center justify-between hover:border-rose-500/60 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
+                  <Instagram size={24} />
+                </div>
+                <div>
+                  <h4 className="font-syne font-bold text-white text-base">Follow On Instagram</h4>
+                  <p className="font-jakarta text-xs text-slate-400">@_unique__visions_</p>
                 </div>
               </div>
               <Send size={18} className="text-rose-400 group-hover:translate-x-1 transition-transform" />
