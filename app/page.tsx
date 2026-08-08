@@ -1,20 +1,18 @@
 'use client'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import Footer from './components/Footer'
 import Stats from './components/Stats'
 import { ArrowRight, Sparkles, ShieldCheck, Zap, Award, MessageCircle } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 const Loader = dynamic(() => import('./components/Loader'), { ssr: false })
 const ScrollProgress = dynamic(() => import('./components/ScrollProgress'), { ssr: false })
 const WhatsAppButton = dynamic(() => import('./components/WhatsAppButton'), { ssr: false })
 
 export default function Home() {
-  const router = useRouter()
-
   return (
     <>
       <Loader />
@@ -46,9 +44,9 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* About Link Card */}
-              <div
-                onClick={() => router.push('/about')}
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all"
+              <Link
+                href="/about"
+                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -65,12 +63,12 @@ export default function Home() {
                   <span>Learn Our Story</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
 
               {/* Services Link Card */}
-              <div
-                onClick={() => router.push('/services')}
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all"
+              <Link
+                href="/services"
+                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -87,12 +85,12 @@ export default function Home() {
                   <span>Explore Catalog</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
 
               {/* Pricing Link Card */}
-              <div
-                onClick={() => router.push('/pricing')}
-                className="glass-card p-8 border border-amber-500/20 hover:border-amber-500/50 bg-gradient-to-b from-[#200A0D]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all"
+              <Link
+                href="/pricing"
+                className="glass-card p-8 border border-amber-500/20 hover:border-amber-500/50 bg-gradient-to-b from-[#200A0D]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -109,12 +107,12 @@ export default function Home() {
                   <span>View Pricing</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
 
               {/* Reviews Link Card */}
-              <div
-                onClick={() => router.push('/reviews')}
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all"
+              <Link
+                href="/reviews"
+                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -131,12 +129,12 @@ export default function Home() {
                   <span>Read Reviews</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
 
               {/* Contact Link Card */}
-              <div
-                onClick={() => router.push('/contact')}
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all sm:col-span-2 lg:col-span-2"
+              <Link
+                href="/contact"
+                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all sm:col-span-2 lg:col-span-2 block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -153,7 +151,7 @@ export default function Home() {
                   <span>Contact Us Directly</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -171,19 +169,19 @@ export default function Home() {
               Place an order or send us an inquiry today to receive a personalized digital strategy for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => router.push('/order')}
-                className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold"
+              <Link
+                href="/order"
+                className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center justify-center gap-2"
               >
                 <span>Place Order Now</span>
                 <ArrowRight size={16} />
-              </button>
-              <button
-                onClick={() => router.push('/contact')}
-                className="btn-glass px-8 py-4 uppercase text-xs tracking-widest font-bold"
+              </Link>
+              <Link
+                href="/contact"
+                className="btn-glass px-8 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center justify-center"
               >
                 <span>Contact Us</span>
-              </button>
+              </Link>
             </div>
           </div>
         </section>

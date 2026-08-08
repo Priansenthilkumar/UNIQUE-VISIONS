@@ -1,8 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react'
 import { Instagram, Facebook, MessageCircle, Phone, MapPin, ArrowUp } from 'lucide-react'
+import Link from 'next/link'
 import Logo from './Logo'
-import { useRouter } from 'next/navigation'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -20,19 +19,6 @@ const serviceLinks = [
 ]
 
 export default function Footer() {
-  const router = useRouter()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
-  const handleLink = (href: string) => {
-    router.push(href)
-  }
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -45,9 +31,9 @@ export default function Footer() {
 
           {/* Brand Col */}
           <div className="space-y-6">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push('/')}>
+            <Link href="/" className="flex items-center gap-3 cursor-pointer">
               <Logo size={42} showText={true} />
-            </div>
+            </Link>
             <p className="font-jakarta text-slate-400 text-sm leading-relaxed">
               Premium digital marketing & design agency elevating brands with result-oriented digital solutions.
             </p>
@@ -79,12 +65,12 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <button
-                    onClick={() => handleLink(link.href)}
-                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider"
+                  <Link
+                    href={link.href}
+                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider block"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,12 +84,12 @@ export default function Footer() {
             <ul className="space-y-3">
               {serviceLinks.map((s) => (
                 <li key={s}>
-                  <button
-                    onClick={() => router.push(`/order?service=${encodeURIComponent(s)}`)}
-                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider text-left"
+                  <Link
+                    href={`/order?service=${encodeURIComponent(s)}`}
+                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider block text-left"
                   >
                     {s}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

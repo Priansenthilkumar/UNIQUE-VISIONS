@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles, Users, Briefcase, Star, TrendingUp, Play, CheckCircle2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 
 const ParticleBackground = dynamic(() => import('./ParticleBackground'), { ssr: false })
@@ -96,20 +97,20 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
         >
-          <button
-            onClick={() => window.location.href = '/contact'}
-            className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold w-full sm:w-auto"
+          <Link
+            href="/contact"
+            className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold w-full sm:w-auto inline-flex items-center justify-center gap-2"
           >
             <span>Start Your Project</span>
             <ArrowRight size={16} />
-          </button>
+          </Link>
 
-          <button
-            onClick={() => window.location.href = '/services'}
-            className="btn-glass px-8 py-4 uppercase text-xs tracking-widest font-bold w-full sm:w-auto"
+          <Link
+            href="/services"
+            className="btn-glass px-8 py-4 uppercase text-xs tracking-widest font-bold w-full sm:w-auto inline-flex items-center justify-center text-center"
           >
             <span>Explore Services</span>
-          </button>
+          </Link>
         </motion.div>
 
         {/* Floating Showcase Visual Card & Metrics */}
