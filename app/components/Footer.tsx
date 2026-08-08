@@ -1,5 +1,5 @@
 'use client'
-import { Instagram, Facebook, MessageCircle, Phone, MapPin, ArrowUp } from 'lucide-react'
+import { Instagram, Facebook, Mail, MapPin, ArrowUp } from 'lucide-react'
 import Link from 'next/link'
 import Logo from './Logo'
 
@@ -41,7 +41,7 @@ export default function Footer() {
               {[
                 { icon: Instagram, href: 'https://www.instagram.com/_unique__visions_?igsh=dWtrYTRxeDZ4cng2', label: 'Instagram' },
                 { icon: Facebook, href: '#', label: 'Facebook' },
-                { icon: MessageCircle, href: 'https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F', label: 'WhatsApp' }
+                { icon: Mail, href: 'mailto:uniquevisions111@gmail.com', label: 'Email' }
               ].map((s, i) => (
                 <a
                   key={i}
@@ -102,11 +102,11 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Phone size={18} className="text-rose-400 shrink-0 mt-1" />
+                <Mail size={18} className="text-rose-400 shrink-0 mt-1" />
                 <div>
-                  <p className="text-xs uppercase text-slate-500 font-bold">Call Us</p>
-                  <a href="tel:+919363964142" className="text-sm font-semibold text-white hover:text-rose-400 transition-colors">
-                    +91 9363964142
+                  <p className="text-xs uppercase text-slate-500 font-bold">Email Us</p>
+                  <a href="mailto:uniquevisions111@gmail.com" className="text-sm font-semibold text-white hover:text-rose-400 transition-colors">
+                    uniquevisions111@gmail.com
                   </a>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, MessageCircle, Sparkles } from 'lucide-react'
+import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, Mail, Sparkles } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Logo from '../components/Logo'
 import Footer from '../components/Footer'
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: 'How do I contact you for support?',
-    a: 'You can reach us via WhatsApp at +91 9363964142, email at Uniquevisions111@gmail.com, or use the Contact form on our website. We respond quickly — usually within a few hours.',
+    a: 'You can reach us via email at Uniquevisions111@gmail.com, or use the Contact form on our website. We respond quickly — usually within a few hours.',
   },
   {
     q: 'What are your pricing plans?',
@@ -191,13 +191,11 @@ export default function HelpPage() {
             <p className="font-jakarta text-slate-300 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:uniquevisions111@gmail.com"
                 className="btn-crimson px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
               >
-                <MessageCircle size={16} />
-                <span>Chat on WhatsApp</span>
+                <Mail size={16} />
+                <span>Email Support</span>
               </a>
               <button
                 onClick={() => router.push('/contact')}

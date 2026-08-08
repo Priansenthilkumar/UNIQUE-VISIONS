@@ -1,25 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Send, MessageCircle, Sparkles, MapPin, Phone, Instagram } from 'lucide-react'
-
-const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'
-const TELEGRAM_CHAT_ID   = 'YOUR_CHAT_ID'
-
-async function sendToTelegram(form: Record<string, string>) {
-  const text =
-    `📩 *New Enquiry — Unique Visions*\n\n` +
-    `👤 *Name:* ${form.name}\n` +
-    `📞 *Phone:* ${form.phone}\n` +
-    `📧 *Email:* ${form.email}\n` +
-    `🛠 *Service:* ${form.service}\n\n` +
-    `💬 *Message:*\n${form.message}`
-  const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'Markdown' }),
-  })
-  if (!res.ok) throw new Error('Telegram error')
-}
+import { Send, Sparkles, MapPin, Mail, Instagram } from 'lucide-react'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
@@ -34,28 +15,29 @@ export default function Contact() {
     e.preventDefault()
     setSending(true)
 
-    // Send Inquiry Details to uniquevisions111@gmail.com
+    // Send Inquiry Details directly to uniquevisions111@gmail.com
     try {
+      const emailPayload: Record<string, string> = {
+        _subject: `📩 New Contact Inquiry — ${form.service || 'General'}`,
+        Client_Name: form.name,
+        Client_Phone: form.phone,
+        Client_Email: form.email,
+        Selected_Service: form.service || 'General Inquiry',
+        Message: form.message,
+        _template: 'table',
+      }
+      if (form.email) {
+        emailPayload._cc = form.email
+        emailPayload._replyto = form.email
+      }
+
       await fetch('https://formsubmit.co/ajax/uniquevisions111@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `📩 New Contact Inquiry — ${form.service || 'General'}`,
-          Client_Name: form.name,
-          Client_Phone: form.phone,
-          Client_Email: form.email || 'Not provided',
-          Selected_Service: form.service || 'General Inquiry',
-          Message: form.message,
-          _template: 'table'
-        })
+        body: JSON.stringify(emailPayload)
       })
     } catch {}
 
-    const customDetails = form.name || form.service || form.message
-      ? `Hi Can I get The Pricings ?\n\n*Client Details:*\nName: ${form.name}\nPhone: ${form.phone}\nService: ${form.service || 'General'}\nMessage: ${form.message}`
-      : `Hi Can I get The Pricings ?`
-    const waUrl = `https://wa.me/919363964142?text=${encodeURIComponent(customDetails)}`
-    window.open(waUrl, '_blank')
     setSent(true)
     setForm({ name: '', email: '', phone: '', service: '', message: '' })
     setSending(false)
@@ -89,12 +71,12 @@ export default function Contact() {
             <div className="glass-card p-8 border border-rose-500/20 space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
-                  <Phone size={22} />
+                  <Mail size={22} />
                 </div>
                 <div>
-                  <p className="font-syne text-xs uppercase tracking-widest text-slate-400">Call / Message Us</p>
-                  <a href="tel:+919363964142" className="font-syne font-bold text-white text-lg hover:text-rose-400 transition-colors">
-                    +91 9363964142
+                  <p className="font-syne text-xs uppercase tracking-widest text-slate-400">Email Us</p>
+                  <a href="mailto:uniquevisions111@gmail.com" className="font-syne font-bold text-white text-base hover:text-rose-400 transition-colors">
+                    uniquevisions111@gmail.com
                   </a>
                 </div>
               </div>
@@ -125,25 +107,6 @@ export default function Contact() {
               />
             </div>
 
-            {/* Direct WhatsApp Action */}
-            <a
-              href="https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-card p-6 border border-rose-500/30 flex items-center justify-between hover:border-rose-500/60 transition-all group"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
-                  <MessageCircle size={24} />
-                </div>
-                <div>
-                  <h4 className="font-syne font-bold text-white text-base">Instant WhatsApp Chat</h4>
-                  <p className="font-jakarta text-xs text-slate-400">Direct response within minutes</p>
-                </div>
-              </div>
-              <Send size={18} className="text-rose-400 group-hover:translate-x-1 transition-transform" />
-            </a>
-
             {/* Direct Instagram Action */}
             <a
               href="https://www.instagram.com/_unique__visions_?igsh=dWtrYTRxeDZ4cng2"
@@ -169,6 +132,12 @@ export default function Contact() {
           <div className="glass-card p-8 md:p-10 border border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90">
             <h3 className="font-syne font-bold text-2xl text-white mb-6">Send An Inquiry</h3>
 
+            {sent && (
+              <div className="p-4 mb-6 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold">
+                Thank you! Your message has been sent to uniquevisions111@gmail.com. We will contact you soon.
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
@@ -179,12 +148,12 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Full Name"
                     className="input-glass text-sm"
                   />
                 </div>
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Phone *</label>
+                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Phone Number *</label>
                   <input
                     type="tel"
                     name="phone"
@@ -198,19 +167,20 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Email</label>
+                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Email Address *</label>
                 <input
                   type="email"
                   name="email"
                   value={form.email}
                   onChange={handleChange}
+                  required
                   placeholder="your@email.com"
                   className="input-glass text-sm"
                 />
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Select Service</label>
+                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Service Needed</label>
                 <select
                   name="service"
                   value={form.service}
@@ -221,46 +191,38 @@ export default function Contact() {
                   <option value="Social Media Management">Social Media Management</option>
                   <option value="Poster Design">Poster Design</option>
                   <option value="Story Design">Story Design</option>
-                  <option value="Reel Editing (Short)">Reel Editing (Short)</option>
-                  <option value="Reel Editing (Long)">Reel Editing (Long)</option>
+                  <option value="Reel Editing">Reel Editing</option>
+                  <option value="Video Editing">Video Editing</option>
                   <option value="Web Design">Web Design (AI + Expert)</option>
-                  <option value="Custom Package">Custom Package</option>
+                  <option value="Other">Other / Custom Strategy</option>
                 </select>
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold font-jakarta">Project Details</label>
+                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Message / Project Details *</label>
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
+                  required
                   rows={4}
-                  placeholder="Tell us about your brand, scope, and timeline..."
+                  placeholder="Tell us about your brand, goals, or requirements..."
                   className="input-glass text-sm resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={sending || sent}
-                className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold"
+                disabled={sending}
+                className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold inline-flex items-center justify-center gap-2"
               >
-                {sent ? (
-                  <span>✓ Message Sent Successfully!</span>
-                ) : sending ? (
-                  <span>Sending Message...</span>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    <span>Submit Inquiry</span>
-                  </>
-                )}
+                <span>{sending ? 'Sending Message...' : 'Send Message'}</span>
+                <Send size={16} />
               </button>
             </form>
           </div>
 
         </div>
-
       </div>
     </section>
   )

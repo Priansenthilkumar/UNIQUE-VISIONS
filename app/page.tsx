@@ -144,7 +144,7 @@ export default function Home() {
                     Contact & Inquiry
                   </h3>
                   <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Get in touch with us via inquiry form, phone call (+91 9363964142), direct WhatsApp, or find our Rasipuram office location on the map.
+                    Get in touch with us via inquiry form, direct email, Instagram, or find our Rasipuram office location on the map.
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 group-hover:translate-x-1 transition-transform">
