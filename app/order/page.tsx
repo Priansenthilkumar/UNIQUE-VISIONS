@@ -29,7 +29,8 @@ function OrderForm() {
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
         <CheckCircle size={64} className="text-rose-400 mx-auto mb-6" />
         <h2 className="font-syne font-extrabold text-3xl text-white mb-3">Order Received!</h2>
-        <p className="font-jakarta text-slate-300 mb-8">We will review your requirements and reach out within 24 hours.</p>
+        <p className="font-jakarta text-slate-300 mb-2 font-medium">Thank you! Your order details have been sent to our team.</p>
+        <p className="font-jakarta text-slate-400 text-sm mb-8">A confirmation copy has been dispatched to <span className="text-rose-300 font-semibold">{form.email}</span>. We will contact you within 24 hours.</p>
         <motion.a href="/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn-crimson inline-flex items-center gap-2 px-8 py-3.5 uppercase text-xs tracking-wider font-bold">
           <span>Back to Home</span> <ArrowRight size={16} />
         </motion.a>
@@ -43,27 +44,29 @@ function OrderForm() {
     e.preventDefault()
     setSending(true)
 
-    // 1. Send Order Details to uniquevisions111@gmail.com via FormSubmit API
+    // Send Order Details to uniquevisions111@gmail.com AND copy to client email (_cc)
     try {
+      const emailPayload: Record<string, string> = {
+        _subject: `📦 New Order Booking — ${form.service}`,
+        Client_Name: form.name,
+        Client_Phone: form.phone,
+        Client_Email: form.email,
+        Selected_Service: form.service,
+        Additional_Details: form.message || 'None',
+        _template: 'table',
+        _autoresponse: `Thank you for your order with Unique Visions! We have received your order for ${form.service}. Our team will review your requirements and get back to you shortly.`,
+      }
+      if (form.email) {
+        emailPayload._cc = form.email
+        emailPayload._replyto = form.email
+      }
+
       await fetch('https://formsubmit.co/ajax/uniquevisions111@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `📦 New Order Received — ${form.service}`,
-          Client_Name: form.name,
-          Client_Phone: form.phone,
-          Client_Email: form.email || 'Not provided',
-          Selected_Service: form.service,
-          Additional_Details: form.message || 'None',
-          _template: 'table'
-        })
+        body: JSON.stringify(emailPayload)
       })
     } catch {}
-
-    // 2. Open WhatsApp chat with pre-filled message
-    const msg = `Hi Can I get The Pricings ?\n\n*Order Booking Details:*\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nDetails: ${form.message || 'N/A'}`
-    const waUrl = `https://wa.me/919363964142?text=${encodeURIComponent(msg)}`
-    window.open(waUrl, '_blank')
 
     setSending(false)
     setSubmitted(true)
@@ -82,8 +85,8 @@ function OrderForm() {
         </div>
       </div>
       <div>
-        <label className="font-jakarta text-xs font-bold text-slate-300 tracking-widest uppercase block mb-2">Email</label>
-        <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" className="input-glass text-sm" />
+        <label className="font-jakarta text-xs font-bold text-slate-300 tracking-widest uppercase block mb-2">Email *</label>
+        <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" className="input-glass text-sm" />
       </div>
       <div>
         <label className="font-jakarta text-xs font-bold text-slate-300 tracking-widest uppercase block mb-2">Service *</label>
