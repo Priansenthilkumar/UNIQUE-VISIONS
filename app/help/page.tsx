@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, Mail, Sparkles } from 'lucide-react'
+import { ChevronDown, ArrowLeft, ClipboardList, Cog, PackageCheck, Mail, MessageCircle, Sparkles } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Logo from '../components/Logo'
 import Footer from '../components/Footer'
