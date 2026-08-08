@@ -41,7 +41,7 @@ export default function Footer() {
               {[
                 { icon: Instagram, href: 'https://www.instagram.com/_unique__visions_?igsh=dWtrYTRxeDZ4cng2', label: 'Instagram' },
                 { icon: Facebook, href: '#', label: 'Facebook' },
-                { icon: MessageCircle, href: 'https://wa.me/919363964142', label: 'WhatsApp' }
+                { icon: MessageCircle, href: 'https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F', label: 'WhatsApp' }
               ].map((s, i) => (
                 <a
                   key={i}

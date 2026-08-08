@@ -191,7 +191,7 @@ export default function HelpPage() {
             <p className="font-jakarta text-slate-300 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/919363964142"
+                href="https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-crimson px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"

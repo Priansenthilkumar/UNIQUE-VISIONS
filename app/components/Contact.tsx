@@ -30,19 +30,18 @@ export default function Contact() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setSending(true)
-    try {
-      await sendToTelegram(form)
-      setSent(true)
-      setForm({ name: '', email: '', phone: '', service: '', message: '' })
-      setTimeout(() => setSent(false), 5000)
-    } catch {
-      alert('Something went wrong. Please call us directly at +91 9363964142')
-    } finally {
-      setSending(false)
-    }
+    const customDetails = form.name || form.service || form.message
+      ? `Hi Can I get The Pricings ?\n\n*Client Details:*\nName: ${form.name}\nPhone: ${form.phone}\nService: ${form.service || 'General'}\nMessage: ${form.message}`
+      : `Hi Can I get The Pricings ?`
+    const waUrl = `https://wa.me/919363964142?text=${encodeURIComponent(customDetails)}`
+    window.open(waUrl, '_blank')
+    setSent(true)
+    setForm({ name: '', email: '', phone: '', service: '', message: '' })
+    setSending(false)
+    setTimeout(() => setSent(false), 5000)
   }
 
   return (
@@ -110,7 +109,7 @@ export default function Contact() {
 
             {/* Direct WhatsApp Action */}
             <a
-              href="https://wa.me/919363964142?text=Hi%20Unique%20Visions!"
+              href="https://wa.me/919363964142?text=Hi%20Can%20I%20get%20The%20Pricings%20%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-card p-6 border border-rose-500/30 flex items-center justify-between hover:border-rose-500/60 transition-all group"

@@ -37,8 +37,16 @@ function OrderForm() {
     )
   }
 
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const msg = `Hi Can I get The Pricings ?\n\n*Order Booking Details:*\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nDetails: ${form.message || 'N/A'}`
+    const waUrl = `https://wa.me/919363964142?text=${encodeURIComponent(msg)}`
+    window.open(waUrl, '_blank')
+    setSubmitted(true)
+  }
+
   return (
-    <form onSubmit={e => { e.preventDefault(); setSubmitted(true) }} className="space-y-6">
+    <form onSubmit={handleOrderSubmit} className="space-y-6">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className="font-jakarta text-xs font-bold text-slate-300 tracking-widest uppercase block mb-2">Full Name *</label>
