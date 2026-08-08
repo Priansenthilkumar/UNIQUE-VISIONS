@@ -37,11 +37,35 @@ function OrderForm() {
     )
   }
 
-  const handleOrderSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false)
+
+  const handleOrderSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSending(true)
+
+    // 1. Send Order Details to uniquevisions111@gmail.com via FormSubmit API
+    try {
+      await fetch('https://formsubmit.co/ajax/uniquevisions111@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `📦 New Order Received — ${form.service}`,
+          Client_Name: form.name,
+          Client_Phone: form.phone,
+          Client_Email: form.email || 'Not provided',
+          Selected_Service: form.service,
+          Additional_Details: form.message || 'None',
+          _template: 'table'
+        })
+      })
+    } catch {}
+
+    // 2. Open WhatsApp chat with pre-filled message
     const msg = `Hi Can I get The Pricings ?\n\n*Order Booking Details:*\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nDetails: ${form.message || 'N/A'}`
     const waUrl = `https://wa.me/919363964142?text=${encodeURIComponent(msg)}`
     window.open(waUrl, '_blank')
+
+    setSending(false)
     setSubmitted(true)
   }
 
@@ -87,8 +111,8 @@ function OrderForm() {
         <label className="font-jakarta text-xs font-bold text-slate-300 tracking-widest uppercase block mb-2 font-semibold">Additional Details</label>
         <textarea rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your brand, goals, or specific timeline requirements..." className="input-glass text-sm resize-none" />
       </div>
-      <button type="submit" className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold">
-        <span>Place Order Now</span>
+      <button type="submit" disabled={sending} className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold inline-flex items-center justify-center gap-2">
+        <span>{sending ? 'Sending Order...' : 'Place Order Now'}</span>
         <ArrowRight size={16} />
       </button>
     </form>

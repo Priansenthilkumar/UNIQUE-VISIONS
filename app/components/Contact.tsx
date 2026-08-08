@@ -30,9 +30,27 @@ export default function Contact() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSending(true)
+
+    // Send Inquiry Details to uniquevisions111@gmail.com
+    try {
+      await fetch('https://formsubmit.co/ajax/uniquevisions111@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `📩 New Contact Inquiry — ${form.service || 'General'}`,
+          Client_Name: form.name,
+          Client_Phone: form.phone,
+          Client_Email: form.email || 'Not provided',
+          Selected_Service: form.service || 'General Inquiry',
+          Message: form.message,
+          _template: 'table'
+        })
+      })
+    } catch {}
+
     const customDetails = form.name || form.service || form.message
       ? `Hi Can I get The Pricings ?\n\n*Client Details:*\nName: ${form.name}\nPhone: ${form.phone}\nService: ${form.service || 'General'}\nMessage: ${form.message}`
       : `Hi Can I get The Pricings ?`
