@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .font-syne {
+    font-family: 'Syne', sans-serif !important;
+  }
+  .font-jakarta {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+  .font-outfit {
+    font-family: 'Outfit', sans-serif !important;
+  }
+  .font-poppins {
+    font-family: 'Poppins', sans-serif !important;
+  }
+}
+
 :root {
   --bg-obsidian: #0B0304;
   --bg-surface: #120507;
