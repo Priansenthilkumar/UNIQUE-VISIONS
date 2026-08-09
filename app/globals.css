@@ -6,7 +6,8 @@
 
 @layer utilities {
   .font-syne {
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
+    letter-spacing: -0.025em;
   }
   .font-jakarta {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;

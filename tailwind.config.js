@@ -21,7 +21,7 @@ module.exports = {
       },
       fontFamily: {
         jakarta: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        syne: ['Syne', 'sans-serif'],
+        syne: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],

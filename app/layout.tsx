@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Syne, Outfit } from 'next/font/google'
+import { Plus_Jakarta_Sans, Outfit } from 'next/font/google'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
@@ -9,17 +9,10 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-syne',
-  display: 'swap',
-})
-
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-syne',
   display: 'swap',
 })
 
@@ -47,7 +40,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`scroll-smooth dark ${jakarta.variable} ${syne.variable} ${outfit.variable}`}>
+    <html lang="en" className={`scroll-smooth dark ${jakarta.variable} ${outfit.variable}`}>
       <body className={`${jakarta.className} bg-[#0B0304] text-[#FFFFFF] font-jakarta antialiased selection:bg-rose-500/40 selection:text-white`}>
         {children}
       </body>
