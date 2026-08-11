@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 @layer utilities {
   .font-syne {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
   .font-jakarta {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -15,29 +15,31 @@
   .font-outfit {
     font-family: 'Outfit', sans-serif !important;
   }
-  .font-poppins {
-    font-family: 'Poppins', sans-serif !important;
+  .font-serif-accent {
+    font-family: 'Playfair Display', Georgia, serif !important;
   }
 }
 
 :root {
-  --bg-obsidian: #0B0304;
-  --bg-surface: #120507;
-  --bg-surface-alt: #1A070A;
-  --bg-card: rgba(26, 10, 14, 0.80);
+  --bg-obsidian: #070709;
+  --bg-surface: #0D0D12;
+  --bg-surface-elevated: #14141C;
+  --bg-card: rgba(18, 18, 26, 0.75);
   
-  --crimson-neon: #E11D48;
-  --crimson-bright: #F43F5E;
-  --crimson-light: #FB7185;
-  --crimson-dark: #991B1B;
-  --crimson-glow: rgba(225, 29, 72, 0.35);
+  --gold-satin: #D4AF37;
+  --gold-bright: #F5D166;
+  --gold-muted: #C89932;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+
+  --crimson-accent: #E11D48;
+  --crimson-glow: rgba(225, 29, 72, 0.2);
 
   --text-main: #FFFFFF;
   --text-muted: #CBD5E1;
   --text-subtle: #94A3B8;
-  
-  --radius-card: 20px;
-  --radius-button: 9999px;
+
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-gold-subtle: rgba(212, 175, 55, 0.2);
 }
 
 * {
@@ -60,24 +62,38 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Subtle background noise texture simulation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080203;
+  background: #050508;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #E11D48 0%, #BE123C 100%);
+  background: linear-gradient(180deg, #D4AF37 0%, #99741B 100%);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #F43F5E;
+  background: #F5D166;
 }
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: rgba(225, 29, 72, 0.4);
+  background: rgba(212, 175, 55, 0.3);
   color: #FFFFFF;
 }
 
@@ -87,103 +103,101 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #E11D48 0%, #F43F5E 50%, #FB7185 100%);
+  background: linear-gradient(90deg, #D4AF37 0%, #F5D166 50%, #E11D48 100%);
   z-index: 9999;
-  box-shadow: 0 0 12px rgba(225, 29, 72, 0.8);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
 }
 
 /* ===== GRADIENT TEXT UTILITIES ===== */
-.gradient-text-crimson {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FB7185 45%, #E11D48 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-}
-
-.gradient-text-emerald {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FB7185 45%, #E11D48 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-}
-
 .gradient-text-gold {
-  background: linear-gradient(135deg, #FFF7ED 0%, #FDE68A 40%, #F59E0B 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5D166 50%, #D4AF37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
 }
 
-/* ===== HARDWARE-ACCELERATED GLASS CARDS ===== */
+.gradient-text-crimson {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FB7185 50%, #E11D48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.gradient-text-silver {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* ===== BESPOKE LUXURY CARDS ===== */
+.luxury-card {
+  background: rgba(14, 14, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-hairline);
+  border-radius: 20px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  opacity: 0.5;
+  transition: opacity 0.35s ease;
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+/* Gold Highlight Card */
+.luxury-card-gold {
+  background: linear-gradient(180deg, rgba(24, 21, 14, 0.85) 0%, rgba(14, 14, 20, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+}
+
+.luxury-card-gold:hover {
+  border-color: rgba(245, 209, 102, 0.7);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.2);
+}
+
+/* Legacy alias fallback */
 .glass-card {
-  background: rgba(24, 8, 11, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(225, 29, 72, 0.15);
-  border-radius: var(--radius-card);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
-  transform: translateZ(0);
-  contain: layout style paint;
-}
-
-.glass-card:hover {
-  border-color: rgba(225, 29, 72, 0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(225, 29, 72, 0.2);
-}
-
-.glass-card-gold {
-  background: rgba(30, 15, 8, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  border-radius: var(--radius-card);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
-  transform: translateZ(0);
-  contain: layout style paint;
-}
-
-.glass-card-gold:hover {
-  border-color: rgba(245, 158, 11, 0.65);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(245, 158, 11, 0.25);
+  @apply luxury-card;
 }
 
 /* ===== BUTTONS ===== */
-.btn-emerald, .btn-crimson {
-  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
-  color: #FFFFFF;
-  font-weight: 700;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-button);
-  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  will-change: transform;
-}
-
-.btn-emerald:hover, .btn-crimson:hover {
-  background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
-  box-shadow: 0 10px 28px rgba(225, 29, 72, 0.5);
-  transform: translateY(-2px);
-}
-
 .btn-gold {
-  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-  color: #0B0304;
+  background: linear-gradient(135deg, #F5D166 0%, #D4AF37 50%, #B38E24 100%);
+  color: #070709;
   font-weight: 700;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-button);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  padding: 0.8rem 1.85rem;
+  border-radius: 9999px;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -192,90 +206,98 @@ body {
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
-  box-shadow: 0 10px 28px rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, #FFE28C 0%, #F5D166 50%, #D4AF37 100%);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
   transform: translateY(-2px);
 }
 
-.btn-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #F8FAFC;
-  font-weight: 600;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-button);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+.btn-crimson {
+  background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.8rem 1.85rem;
+  border-radius: 9999px;
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  will-change: transform;
+}
+
+.btn-crimson:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(225, 29, 72, 0.45);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F8FAFC;
+  font-weight: 600;
+  padding: 0.8rem 1.85rem;
+  border-radius: 9999px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-glass:hover {
-  background: rgba(225, 29, 72, 0.15);
-  border-color: rgba(225, 29, 72, 0.5);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
   transform: translateY(-2px);
+  color: #FFFFFF;
 }
 
-/* ===== BADGES ===== */
-.badge-emerald, .badge-crimson {
+/* ===== ARCHITECTURAL TAG BADGES ===== */
+.tag-luxury {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 0.875rem;
+  padding: 0.35rem 0.95rem;
   border-radius: 9999px;
-  background: rgba(225, 29, 72, 0.15);
-  border: 1px solid rgba(225, 29, 72, 0.35);
-  color: #FB7185;
-  font-size: 0.72rem;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #F5D166;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.badge-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.875rem;
-  border-radius: 9999px;
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  color: #FBBF24;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.badge-crimson {
+  @apply tag-luxury;
 }
 
 /* ===== INPUTS ===== */
 .input-glass {
-  background: rgba(18, 5, 7, 0.8);
-  border: 1px solid rgba(225, 29, 72, 0.2);
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #F8FAFC;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 14px;
+  padding: 0.8rem 1.1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
 }
 
 .input-glass:focus {
   outline: none;
-  border-color: #E11D48;
-  box-shadow: 0 0 16px rgba(225, 29, 72, 0.3);
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 /* ===== SECTION PADDING ===== */
 .section-padding {
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
   }
 }

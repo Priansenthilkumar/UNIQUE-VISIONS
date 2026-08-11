@@ -9,11 +9,11 @@ import Footer from '../components/Footer'
 const faqs = [
   {
     q: 'What services does Unique Visions offer?',
-    a: 'We offer Social Media Management, Creative Poster Design, Story Design, Reel Editing (Short & Long), Video Editing, Content Strategy, Instagram Growth, and Facebook Marketing.',
+    a: 'We offer Social Media Management, Creative Poster Design, Story Design, Reel Editing (Short & Long), Video Editing, Content Strategy, Instagram Growth, and Next.js Web Design.',
   },
   {
     q: 'How do I place an order?',
-    a: 'Click the "Order Now" or "Get Started" button on any page, fill in your details and select your service, and we will contact you within 24 hours to get started.',
+    a: 'Click the "Book Project" or "Order Now" button on any page, fill in your details and select your service, and we will contact you within 24 hours to get started.',
   },
   {
     q: 'How long does delivery take?',
@@ -21,15 +21,15 @@ const faqs = [
   },
   {
     q: 'Do you offer revisions?',
-    a: 'Yes! Poster Design includes 2 revisions, Story Design includes 1 revision. For other services, revisions are discussed based on the scope of work.',
+    a: 'Yes! Poster Design includes 2 revisions, Story Design includes 1 revision. For other services, revisions are included based on contract scope.',
   },
   {
     q: 'How do I contact you for support?',
-    a: 'You can reach us via email at Uniquevisions111@gmail.com, or use the Contact form on our website. We respond quickly — usually within a few hours.',
+    a: 'You can reach us via email at uniquevisions111@gmail.com, or use the Contact form on our website. We respond quickly — usually within a few hours.',
   },
   {
     q: 'What are your pricing plans?',
-    a: 'Our pricing starts at ₹99 for Story Design, ₹149 for Poster Design, ₹200 for Reel Editing, and ₹1,999/month for full Social Media Management. Visit our Pricing section for full details.',
+    a: 'Our pricing starts at ₹99 for Story Design, ₹149 for Poster Design, ₹200 for Reel Editing, and ₹1,999/month for full Social Media Management. Visit our Pricing section for our interactive package calculator.',
   },
   {
     q: 'Do you work with businesses outside Tamil Nadu?',
@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     q: 'Can I get a custom package?',
-    a: 'Yes! If our standard plans don\'t fit your needs, contact us and we\'ll build a custom package tailored specifically to your brand and budget.',
+    a: 'Yes! Use our Custom Package Calculator on the Pricing page or contact us directly to build a custom retainer tailored to your exact budget.',
   },
 ]
 
@@ -68,21 +68,21 @@ const steps = [
   },
 ]
 
-function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
+function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
   return (
     <div
-      className="glass-card border border-rose-500/20 overflow-hidden bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
+      className="luxury-card border border-white/10 overflow-hidden bg-[#0D0D14]"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left group"
       >
-        <span className="font-syne text-base font-bold text-white group-hover:text-rose-400 transition-colors">
+        <span className="font-syne text-base font-bold text-white group-hover:text-amber-400 transition-colors">
           {q}
         </span>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown size={18} className={`transition-colors ${open ? 'text-rose-400' : 'text-slate-400'}`} />
+          <ChevronDown size={18} className={`transition-colors ${open ? 'text-amber-400' : 'text-slate-400'}`} />
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
@@ -107,17 +107,17 @@ export default function HelpPage() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-[#0B0304] text-slate-100 font-jakarta">
+    <div className="min-h-screen bg-[#070709] text-slate-100 font-jakarta">
 
       {/* Header */}
-      <div className="bg-[#120507] border-b border-rose-500/20">
+      <div className="bg-[#0D0D14] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <button onClick={() => router.push('/')} className="flex items-center gap-3">
             <Logo size={36} showText={true} />
           </button>
           <button
             onClick={() => router.push('/')}
-            className="flex items-center gap-2 text-xs uppercase font-bold text-slate-400 hover:text-rose-400 transition-colors"
+            className="flex items-center gap-2 text-xs uppercase font-bold text-slate-400 hover:text-amber-400 transition-colors"
           >
             <ArrowLeft size={16} />
             <span>Back To Home</span>
@@ -125,14 +125,14 @@ export default function HelpPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 text-center">
-          <div className="badge-crimson mb-3">
-            <Sparkles size={14} />
+          <div className="tag-luxury mb-3">
+            <Sparkles size={13} className="text-amber-400" />
             <span>Help Center & FAQ</span>
           </div>
           <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4.5rem)] text-white">
-            How Can We <span className="gradient-text-crimson">Help You?</span>
+            How Can We <span className="gradient-text-gold">Help You?</span>
           </h1>
-          <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto">
+          <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto leading-relaxed">
             Everything you need to know about working with Unique Visions.
           </p>
         </div>
@@ -143,23 +143,23 @@ export default function HelpPage() {
         {/* Process Steps */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <div className="badge-crimson mb-3">
+            <div className="tag-luxury mb-3">
               <span>Step-By-Step Workflow</span>
             </div>
             <h2 className="font-syne font-bold text-3xl text-white">How It Works</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step, i) => (
+            {steps.map((step) => (
               <div
                 key={step.step}
-                className="glass-card p-6 border border-rose-500/20 relative overflow-hidden bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
+                className="luxury-card p-6 border border-white/10 relative overflow-hidden bg-[#0D0D14]"
               >
                 <span className="absolute top-2 right-4 font-syne font-extrabold text-5xl text-white/[0.04] select-none">
                   {step.step}
                 </span>
 
-                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-5">
                   <step.icon size={22} />
                 </div>
 
@@ -173,7 +173,7 @@ export default function HelpPage() {
         {/* FAQs */}
         <div>
           <div className="text-center mb-12">
-            <div className="badge-crimson mb-3">
+            <div className="tag-luxury mb-3">
               <span>Questions Answered</span>
             </div>
             <h2 className="font-syne font-bold text-3xl text-white">Frequently Asked Questions</h2>
@@ -181,18 +181,18 @@ export default function HelpPage() {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, i) => (
-              <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
+              <FAQItem key={i} q={faq.q} a={faq.a} />
             ))}
           </div>
 
           {/* Contact Trigger Callout */}
-          <div className="glass-card p-8 text-center max-w-xl mx-auto mt-16 border border-rose-500/20">
+          <div className="luxury-card-gold p-8 text-center max-w-xl mx-auto mt-16 border border-amber-500/40">
             <h3 className="font-syne font-bold text-xl text-white mb-2">Still Need Help?</h3>
             <p className="font-jakarta text-slate-300 text-xs mb-6">Our team is ready to answer any custom questions directly.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:uniquevisions111@gmail.com"
-                className="btn-crimson px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
+                className="btn-gold px-6 py-3 uppercase text-xs tracking-wider font-bold inline-flex items-center justify-center gap-2"
               >
                 <Mail size={16} />
                 <span>Email Support</span>

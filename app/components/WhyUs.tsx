@@ -4,57 +4,56 @@ import { useRef } from 'react'
 import { DollarSign, Sparkles, Target, Zap, HeadphonesIcon, Layers, ArrowRight } from 'lucide-react'
 
 const reasons = [
-  { icon: DollarSign, num: '01', title: 'Affordable Pricing', desc: 'Quality work at fair prices. No hidden fees, just straight-up value for your investment.' },
-  { icon: Sparkles, num: '02', title: 'Creative Work', desc: 'We create designs and content that actually catch attention and stop the scroll.' },
-  { icon: Target, num: '03', title: 'Results Matter', desc: 'We focus on what works — more followers, more engagement, more customers for you.' },
-  { icon: Zap, num: '04', title: 'Fast Delivery', desc: 'We respect your time. Quick turnarounds without ever compromising on quality.' },
-  { icon: HeadphonesIcon, num: '05', title: 'Always Available', desc: 'Need help? Just message us. We reply fast — real people, not bots.' },
-  { icon: Layers, num: '06', title: 'Made For You', desc: 'Every project is custom-made for your brand. No templates, no shortcuts.' },
+  { icon: DollarSign, num: '01', title: 'Transparent Rates', desc: 'Quality work at fair prices. No hidden fees, just straight-up commercial value for your investment.' },
+  { icon: Sparkles, num: '02', title: 'Bespoke Aesthetics', desc: 'We create designs and content that actually catch attention and command the feed.' },
+  { icon: Target, num: '03', title: 'Measurable Growth', desc: 'We focus on what matters — more followers, higher engagement, and repeat customers.' },
+  { icon: Zap, num: '04', title: 'Rapid Execution', desc: 'We respect your deadlines. Fast turnarounds without ever compromising on precision.' },
+  { icon: HeadphonesIcon, num: '05', title: 'Direct Access', desc: 'Need help? Real agency team support — fast, responsive, and dedicated.' },
+  { icon: Layers, num: '06', title: 'Tailored Strategy', desc: 'Every project is custom-crafted for your brand identity. No shortcuts, no cookie-cutter templates.' },
 ]
 
 export default function WhyUs() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="whyus" className="section-padding relative overflow-hidden bg-[#0B0304]">
+    <section id="whyus" className="section-padding relative overflow-hidden bg-[#070709]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="badge-crimson mb-4">
-            <Sparkles size={14} />
-            <span>Why We're Different</span>
+          <div className="tag-luxury mb-3">
+            <Sparkles size={13} className="text-amber-400" />
+            <span>Why We Are Different</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            Why Choose <span className="gradient-text-crimson">Unique Visions</span>
+            Why Choose <span className="gradient-text-gold">Unique Visions</span>
           </h2>
-          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-2xl mx-auto mt-4">
+          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
             We combine high-end creative storytelling, strategic distribution, and rapid execution to deliver true competitive advantage.
           </p>
         </div>
 
-        {/* Bento Grid */}
+        {/* Grid */}
         <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {reasons.map((item, i) => (
+          {reasons.map((item) => (
             <div
               key={item.num}
-              className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 relative overflow-hidden group bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
+              className="luxury-card p-8 border border-white/10 hover:border-amber-500/40 relative overflow-hidden group bg-[#0D0D14]"
             >
               {/* Background Number Accent */}
-              <span className="absolute top-2 right-4 font-syne font-extrabold text-7xl text-white/[0.03] group-hover:text-rose-500/10 transition-colors select-none pointer-events-none">
+              <span className="absolute top-2 right-4 font-syne font-extrabold text-7xl text-white/[0.03] group-hover:text-amber-500/10 transition-colors select-none pointer-events-none">
                 {item.num}
               </span>
 
-              <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-rose-500/20 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
                 <item.icon size={24} />
               </div>
 
-              <span className="font-syne text-xs font-bold uppercase tracking-widest text-rose-400 block mb-2">
-                Reason {item.num}
+              <span className="font-syne text-xs font-bold uppercase tracking-widest text-amber-400 block mb-2">
+                Pillar {item.num}
               </span>
 
-              <h3 className="font-syne font-bold text-xl text-white mb-3 group-hover:text-rose-300 transition-colors">
+              <h3 className="font-syne font-bold text-xl text-white mb-3 group-hover:text-amber-300 transition-colors">
                 {item.title}
               </h3>
               <p className="font-jakarta text-slate-300 text-sm leading-relaxed">
@@ -68,7 +67,7 @@ export default function WhyUs() {
         <div className="text-center">
           <button
             onClick={() => window.location.href = '/order'}
-            className="btn-crimson px-10 py-4 uppercase text-xs tracking-widest font-bold"
+            className="btn-gold px-10 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center gap-2"
           >
             <span>Partner With Us</span>
             <ArrowRight size={16} />

@@ -15,7 +15,6 @@ export default function Contact() {
     e.preventDefault()
     setSending(true)
 
-    // Send Inquiry Details directly to uniquevisions111@gmail.com
     try {
       const emailPayload: Record<string, string> = {
         _subject: `📩 New Contact Inquiry — ${form.service || 'General'}`,
@@ -45,20 +44,20 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden bg-[#0B0304]">
+    <section id="contact" className="section-padding relative overflow-hidden bg-[#070709]">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="badge-crimson mb-4">
-            <Sparkles size={14} />
+          <div className="tag-luxury mb-3">
+            <Sparkles size={13} className="text-amber-400" />
             <span>Get In Touch</span>
           </div>
           <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-            Let's Start <span className="gradient-text-crimson">Building</span>
+            Let's Build Something <span className="gradient-text-gold">Iconic</span>
           </h2>
-          <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-xl mx-auto mt-4">
-            Have a project in mind? Reach out to us and let's craft a winning strategy together.
+          <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-xl mx-auto mt-4 leading-relaxed">
+            Have a project in mind? Reach out to us and let's craft a winning growth strategy together.
           </p>
         </div>
 
@@ -68,21 +67,21 @@ export default function Contact() {
           <div className="space-y-6">
 
             {/* Quick Contact Info Card */}
-            <div className="glass-card p-8 border border-rose-500/20 space-y-6">
+            <div className="luxury-card p-8 border border-white/10 space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
                   <Mail size={22} />
                 </div>
                 <div>
-                  <p className="font-syne text-xs uppercase tracking-widest text-slate-400">Email Us</p>
-                  <a href="mailto:uniquevisions111@gmail.com" className="font-syne font-bold text-white text-base hover:text-rose-400 transition-colors">
+                  <p className="font-syne text-xs uppercase tracking-widest text-slate-400">Direct Email</p>
+                  <a href="mailto:uniquevisions111@gmail.com" className="font-syne font-bold text-white text-base hover:text-amber-400 transition-colors">
                     uniquevisions111@gmail.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
                   <MapPin size={22} />
                 </div>
                 <div>
@@ -93,7 +92,7 @@ export default function Contact() {
             </div>
 
             {/* Google Map */}
-            <div className="glass-card p-2 border border-rose-500/20 overflow-hidden rounded-3xl">
+            <div className="luxury-card p-2 border border-white/10 overflow-hidden rounded-3xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62650.47779287406!2d78.1247!3d11.4646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab8441f4c3f4f9%3A0x8b1e6c7e7b1e6c7e!2sRasipuram%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
@@ -112,10 +111,10 @@ export default function Contact() {
               href="https://www.instagram.com/_unique__visions_?igsh=dWtrYTRxeDZ4cng2"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card p-6 border border-rose-500/30 flex items-center justify-between hover:border-rose-500/60 transition-all group"
+              className="luxury-card p-6 border border-white/10 flex items-center justify-between hover:border-amber-500/40 transition-all group"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center">
                   <Instagram size={24} />
                 </div>
                 <div>
@@ -123,25 +122,25 @@ export default function Contact() {
                   <p className="font-jakarta text-xs text-slate-400">@_unique__visions_</p>
                 </div>
               </div>
-              <Send size={18} className="text-rose-400 group-hover:translate-x-1 transition-transform" />
+              <Send size={18} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
             </a>
 
           </div>
 
           {/* Right - Dark Glass Inquiry Form */}
-          <div className="glass-card p-8 md:p-10 border border-rose-500/20 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90">
+          <div className="luxury-card-gold p-8 md:p-10 border border-amber-500/40 bg-[#0D0D14]">
             <h3 className="font-syne font-bold text-2xl text-white mb-6">Send An Inquiry</h3>
 
             {sent && (
-              <div className="p-4 mb-6 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold">
+              <div className="p-4 mb-6 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
                 Thank you! Your message has been sent to uniquevisions111@gmail.com. We will contact you soon.
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 font-jakarta">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Your Name *</label>
+                  <label className="text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Your Name *</label>
                   <input
                     type="text"
                     name="name"
@@ -153,7 +152,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Phone Number *</label>
+                  <label className="text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Phone Number *</label>
                   <input
                     type="tel"
                     name="phone"
@@ -167,7 +166,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Email Address *</label>
+                <label className="text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Email Address *</label>
                 <input
                   type="email"
                   name="email"
@@ -180,12 +179,12 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Service Needed</label>
+                <label className="text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Service Needed</label>
                 <select
                   name="service"
                   value={form.service}
                   onChange={handleChange}
-                  className="input-glass text-sm bg-[#0B0304]"
+                  className="input-glass text-sm bg-[#070709]"
                 >
                   <option value="">Select a service</option>
                   <option value="Social Media Management">Social Media Management</option>
@@ -199,7 +198,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-jakarta text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Message / Project Details *</label>
+                <label className="text-xs uppercase tracking-widest text-slate-400 block mb-2 font-semibold">Message / Project Details *</label>
                 <textarea
                   name="message"
                   value={form.message}
@@ -214,7 +213,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={sending}
-                className="btn-crimson w-full py-4 uppercase tracking-wider text-xs font-bold inline-flex items-center justify-center gap-2"
+                className="btn-gold w-full py-4 uppercase tracking-wider text-xs font-bold inline-flex items-center justify-center gap-2"
               >
                 <span>{sending ? 'Sending Message...' : 'Send Message'}</span>
                 <Send size={16} />

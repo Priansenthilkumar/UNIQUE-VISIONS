@@ -43,16 +43,16 @@ function StarDisplay({ value }: { value: number }) {
 function ReviewCard({ review, index }: { review: Review; index: number }) {
   return (
     <div
-      className="glass-card p-6 border border-rose-500/20 flex flex-col justify-between hover:border-rose-500/40 transition-all bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90"
+      className="luxury-card p-6 border border-white/10 flex flex-col justify-between hover:border-amber-500/40 transition-all bg-[#0D0D14]"
     >
       <div>
         <div className="flex items-center justify-between mb-3">
           <StarDisplay value={review.rating} />
-          <span className="font-syne text-[0.65rem] font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+          <span className="font-syne text-[0.65rem] font-bold text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider border border-amber-500/30">
             {review.service}
           </span>
         </div>
-        <Quote size={20} className="text-rose-400/40 mb-2" />
+        <Quote size={20} className="text-amber-400/40 mb-2" />
         <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
           "{review.text}"
         </p>
@@ -60,7 +60,7 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
 
       <div className="flex items-center justify-between pt-4 border-t border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-syne font-bold text-sm border border-rose-500/30">
+          <div className="w-9 h-9 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-syne font-bold text-sm border border-amber-500/30">
             {review.name.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -118,7 +118,7 @@ export default function ReviewsPage() {
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-[#0B0304] text-slate-100 font-jakarta">
+    <div className="min-h-screen bg-[#070709] text-slate-100 font-jakarta">
       <Navbar />
 
       <main className="pt-36 pb-24">
@@ -126,12 +126,12 @@ export default function ReviewsPage() {
 
           {/* Page Header */}
           <div className="text-center mb-16">
-            <div className="badge-crimson mb-3">
-              <Sparkles size={14} />
+            <div className="tag-luxury mb-3">
+              <Sparkles size={13} className="text-amber-400" />
               <span>Real Testimonials</span>
             </div>
             <h1 className="font-syne font-extrabold text-[clamp(2.4rem,5vw,4rem)] text-white">
-              Client Feedback & <span className="gradient-text-crimson">Reviews</span>
+              Client Feedback & <span className="gradient-text-gold">Reviews</span>
             </h1>
             <p className="font-jakarta text-slate-300 mt-3 text-base max-w-xl mx-auto">
               Real reviews from real business owners who trust Unique Visions.
@@ -150,8 +150,8 @@ export default function ReviewsPage() {
               </div>
 
               {reviews.length === 0 ? (
-                <div className="glass-card p-12 text-center border border-rose-500/20">
-                  <MessageSquare size={36} className="text-rose-400 mx-auto mb-4" />
+                <div className="luxury-card p-12 text-center border border-white/10">
+                  <MessageSquare size={36} className="text-amber-400 mx-auto mb-4" />
                   <h3 className="font-syne font-bold text-lg text-white mb-2">No custom reviews posted yet</h3>
                   <p className="font-jakarta text-slate-300 text-sm">Be the first to share your experience with Unique Visions!</p>
                 </div>
@@ -165,12 +165,12 @@ export default function ReviewsPage() {
             </div>
 
             {/* Form Column */}
-            <div className="glass-card p-8 border border-rose-500/20 h-fit bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90">
+            <div className="luxury-card-gold p-8 border border-amber-500/40 h-fit bg-[#0D0D14]">
               <h3 className="font-syne font-bold text-xl text-white mb-2">Leave A Review</h3>
               <p className="font-jakarta text-slate-300 text-xs mb-6">Share your rating and feedback on our work.</p>
 
               {sent && (
-                <div className="p-4 mb-6 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold flex items-center gap-2">
+                <div className="p-4 mb-6 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-2">
                   <CheckCircle size={16} />
                   <span>Thank you! Your review has been posted.</span>
                 </div>
@@ -195,7 +195,7 @@ export default function ReviewsPage() {
 
                 <div>
                   <label className="font-jakarta text-xs uppercase tracking-widest text-slate-300 block mb-2 font-semibold">Service Used</label>
-                  <select name="service" value={form.service} onChange={handleChange} className="input-glass text-sm bg-[#0B0304]">
+                  <select name="service" value={form.service} onChange={handleChange} className="input-glass text-sm bg-[#070709]">
                     <option value="">Select a service</option>
                     {services.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
@@ -206,7 +206,7 @@ export default function ReviewsPage() {
                   <textarea name="text" value={form.text} onChange={handleChange} required rows={4} placeholder="Describe your experience working with us..." className="input-glass text-sm resize-none" />
                 </div>
 
-                <button type="submit" disabled={sending || sent} className="btn-crimson w-full py-3.5 uppercase tracking-wider text-xs font-bold">
+                <button type="submit" disabled={sending || sent} className="btn-gold w-full py-3.5 uppercase tracking-wider text-xs font-bold">
                   {sending ? 'Posting Review...' : 'Submit Review'}
                 </button>
               </form>

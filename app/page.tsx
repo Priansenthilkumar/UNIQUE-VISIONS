@@ -1,11 +1,15 @@
 'use client'
+
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
+import PortfolioShowcase from './components/PortfolioShowcase'
+import Services from './components/Services'
+import Pricing from './components/Pricing'
+import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
-import Stats from './components/Stats'
 import { ArrowRight, Sparkles, ShieldCheck, Zap, Award, MessageCircle } from 'lucide-react'
 
 const Loader = dynamic(() => import('./components/Loader'), { ssr: false })
@@ -19,26 +23,38 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
 
-      <main className="bg-[#0B0304] text-slate-100 font-jakarta">
+      <main className="bg-[#070709] text-slate-100 font-jakarta overflow-hidden">
         {/* 1. Hero Section */}
         <Hero />
 
-        {/* 2. Marquee Ticker */}
+        {/* 2. Brand Marquee */}
         <Marquee />
 
-        {/* 3. Agency Portal Direct Navigation Cards */}
-        <section className="section-padding relative overflow-hidden bg-[#0B0304]">
+        {/* 3. Visual Portfolio & Work Deliverables Gallery */}
+        <PortfolioShowcase />
+
+        {/* 4. Complete Services Catalog */}
+        <Services />
+
+        {/* 5. Pricing & Interactive Custom Package Calculator */}
+        <Pricing />
+
+        {/* 6. Client Reviews & Feedback */}
+        <Testimonials />
+
+        {/* 7. Portal Navigation Cards */}
+        <section className="section-padding relative overflow-hidden bg-[#070709]">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-16">
-              <div className="badge-crimson mb-3">
-                <Sparkles size={14} />
-                <span>Explore Agency</span>
+            <div className="text-center mb-14">
+              <div className="tag-luxury mb-3">
+                <Sparkles size={13} className="text-amber-400" />
+                <span>Quick Agency Navigation</span>
               </div>
               <h2 className="font-syne font-extrabold text-[clamp(2.2rem,5vw,3.8rem)] text-white leading-tight">
-                Everything You Need To <span className="gradient-text-crimson">Scale Digital Growth</span>
+                Explore The Agency <span className="gradient-text-gold">Hub</span>
               </h2>
-              <p className="font-jakarta text-slate-300 text-base md:text-lg max-w-2xl mx-auto mt-4">
-                Select a section to explore our story, full services catalog, transparent pricing, client reviews, or contact details.
+              <p className="font-jakarta text-slate-400 text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
+                Direct access to our story, full services catalog, transparent rates, client reviews, and instant order booking.
               </p>
             </div>
 
@@ -46,20 +62,20 @@ export default function Home() {
               {/* About Link Card */}
               <Link
                 href="/about"
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
+                className="luxury-card p-8 border border-white/10 hover:border-amber-500/40 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <ShieldCheck size={24} />
                   </div>
-                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-rose-400 transition-colors">
+                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-amber-400 transition-colors">
                     About Us
                   </h3>
                   <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Discover our journey, mission, core values, timeline, and why 10+ brands choose Unique Visions.
+                    Discover our journey, core values, timeline, and why 10+ brands trust Unique Visions.
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 group-hover:translate-x-1 transition-transform">
                   <span>Learn Our Story</span>
                   <ArrowRight size={14} />
                 </div>
@@ -68,20 +84,20 @@ export default function Home() {
               {/* Services Link Card */}
               <Link
                 href="/services"
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
+                className="luxury-card p-8 border border-white/10 hover:border-amber-500/40 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Zap size={24} />
                   </div>
-                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-rose-400 transition-colors">
-                    Our Services
+                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-amber-400 transition-colors">
+                    Services
                   </h3>
                   <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Full catalog of 8 services: Social Media Management, Creative Design, Reel Editing, Video Production & AI Web Design.
+                    Full catalog of 8 core services: Social Media, Poster Design, Reel Editing, & Web Design.
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 group-hover:translate-x-1 transition-transform">
                   <span>Explore Catalog</span>
                   <ArrowRight size={14} />
                 </div>
@@ -90,65 +106,21 @@ export default function Home() {
               {/* Pricing Link Card */}
               <Link
                 href="/pricing"
-                className="glass-card p-8 border border-amber-500/20 hover:border-amber-500/50 bg-gradient-to-b from-[#200A0D]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
+                className="luxury-card p-8 border border-white/10 hover:border-amber-500/40 cursor-pointer group flex flex-col justify-between transition-all block"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <Award size={24} />
                   </div>
                   <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-amber-400 transition-colors">
-                    Pricing & Plans
+                    Pricing & Calculator
                   </h3>
                   <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Transparent rates starting at ₹99/story, ₹149/post, ₹200/reel, and ₹1,999/mo for complete monthly management.
+                    Transparent rates starting at ₹99/story, ₹149/post, ₹200/reel, and ₹1,999/mo retainers.
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 group-hover:translate-x-1 transition-transform">
-                  <span>View Pricing</span>
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
-
-              {/* Reviews Link Card */}
-              <Link
-                href="/reviews"
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all block"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <Sparkles size={24} />
-                  </div>
-                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-rose-400 transition-colors">
-                    Client Reviews
-                  </h3>
-                  <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Read verified client feedback and ratings, or leave a review about your experience working with us.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 group-hover:translate-x-1 transition-transform">
-                  <span>Read Reviews</span>
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
-
-              {/* Contact Link Card */}
-              <Link
-                href="/contact"
-                className="glass-card p-8 border border-rose-500/20 hover:border-rose-500/50 bg-gradient-to-b from-[#120507]/90 to-[#1A070A]/90 cursor-pointer group flex flex-col justify-between transition-all sm:col-span-2 lg:col-span-2 block"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <MessageCircle size={24} />
-                  </div>
-                  <h3 className="font-syne font-bold text-2xl text-white mb-2 group-hover:text-rose-400 transition-colors">
-                    Contact & Inquiry
-                  </h3>
-                  <p className="font-jakarta text-slate-300 text-sm leading-relaxed mb-6">
-                    Get in touch with us via inquiry form, direct email, Instagram, or find our Rasipuram office location on the map.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 group-hover:translate-x-1 transition-transform">
-                  <span>Contact Us Directly</span>
+                  <span>View Pricing & Calculator</span>
                   <ArrowRight size={14} />
                 </div>
               </Link>
@@ -156,31 +128,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. Stats Section */}
-        <Stats />
-
-        {/* 5. Bottom Callout Banner */}
-        <section className="py-20 bg-[#120507] border-t border-rose-500/20">
+        {/* 8. Bottom CTA Banner */}
+        <section className="py-24 bg-[#070709] border-t border-white/10 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="font-syne font-extrabold text-3xl md:text-5xl text-white mb-4 leading-tight">
-              Ready To Start Your Growth Journey?
+              Ready To Transform Your <span className="font-serif-accent italic text-amber-300">Digital Presence?</span>
             </h2>
-            <p className="font-jakarta text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
-              Place an order or send us an inquiry today to receive a personalized digital strategy for your business.
+            <p className="font-jakarta text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+              Book your deliverable today or request a custom monthly growth retainer strategy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/order"
-                className="btn-crimson px-8 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center justify-center gap-2"
+                className="btn-gold px-8 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center justify-center gap-2"
               >
-                <span>Place Order Now</span>
+                <span>Book A Project Now</span>
                 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/contact"
                 className="btn-glass px-8 py-4 uppercase text-xs tracking-widest font-bold inline-flex items-center justify-center"
               >
-                <span>Contact Us</span>
+                <span>Contact Agency</span>
               </Link>
             </div>
           </div>

@@ -24,7 +24,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#080203] border-t border-rose-500/20 text-slate-400 font-jakarta pt-20 pb-12 overflow-hidden">
+    <footer className="relative bg-[#050508] border-t border-white/10 text-slate-400 font-jakarta pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -35,7 +35,7 @@ export default function Footer() {
               <Logo size={42} showText={true} />
             </Link>
             <p className="font-jakarta text-slate-400 text-sm leading-relaxed">
-              Premium digital marketing & design agency elevating brands with result-oriented digital solutions.
+              Premium digital content & growth studio transforming social presence into measurable commercial success.
             </p>
             <div className="flex gap-3">
               {[
@@ -48,7 +48,7 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-[#120507] border border-rose-500/20 flex items-center justify-center text-slate-400 hover:text-rose-400 hover:border-rose-500/50 transition-all"
+                  className="w-10 h-10 rounded-xl bg-[#0D0D14] border border-white/10 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:border-amber-500/40 transition-all"
                   title={s.label}
                 >
                   <s.icon size={18} />
@@ -67,7 +67,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider block"
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-wider block"
                   >
                     {link.label}
                   </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
                 <li key={s}>
                   <Link
                     href={`/order?service=${encodeURIComponent(s)}`}
-                    className="font-jakarta text-xs text-slate-400 hover:text-rose-400 transition-colors uppercase tracking-wider block text-left"
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-400 transition-colors uppercase tracking-wider block text-left"
                   >
                     {s}
                   </Link>
@@ -102,18 +102,18 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Mail size={18} className="text-rose-400 shrink-0 mt-1" />
+                <Mail size={18} className="text-amber-400 shrink-0 mt-1" />
                 <div>
-                  <p className="text-xs uppercase text-slate-500 font-bold">Email Us</p>
-                  <a href="mailto:uniquevisions111@gmail.com" className="text-sm font-semibold text-white hover:text-rose-400 transition-colors">
+                  <p className="text-xs uppercase text-slate-500 font-bold">Direct Email</p>
+                  <a href="mailto:uniquevisions111@gmail.com" className="text-sm font-semibold text-white hover:text-amber-400 transition-colors">
                     uniquevisions111@gmail.com
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin size={18} className="text-rose-400 shrink-0 mt-1" />
+                <MapPin size={18} className="text-amber-400 shrink-0 mt-1" />
                 <div>
-                  <p className="text-xs uppercase text-slate-500 font-bold">Location</p>
+                  <p className="text-xs uppercase text-slate-500 font-bold">Office Location</p>
                   <p className="text-sm font-semibold text-white">Rasipuram, Tamil Nadu</p>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Unique Visions. All Rights Reserved.</p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-rose-400 hover:text-rose-300 font-bold uppercase tracking-wider transition-colors"
+            className="flex items-center gap-2 text-amber-400 hover:text-amber-300 font-bold uppercase tracking-wider transition-colors"
           >
             <span>Back To Top</span>
             <ArrowUp size={16} />
